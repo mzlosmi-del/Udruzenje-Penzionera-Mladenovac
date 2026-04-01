@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Udruženje Penzionera Mladenovac</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2f4a;
+    --navy-light: #2a4a6e;
+    --gold: #c8973a;
+    --gold-light: #e8b85a;
+    --cream: #f8f4ef;
+    --cream-dark: #efe9e0;
+    --text: #2c2c2c;
+    --text-muted: #6b6b6b;
+    --white: #ffffff;
+    --border: #d5cfc6;
+    --red-soft: #c0392b;
+    --green-soft: #27ae60;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.65;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    background: var(--navy);
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+  }
+
+  .header-top {
+    background: var(--navy-light);
+    padding: 6px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px; color: rgba(255,255,255,0.65);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .header-top a { color: var(--gold-light); text-decoration: none; }
+
+  .header-main {
+    padding: 18px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .logo-area { display: flex; align-items: center; gap: 18px; }
+
+  .logo-icon {
+    width: 56px; height: 56px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 3px rgba(200,151,58,0.3);
+  }
+
+  .logo-text { color: white; }
+  .logo-text .title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; line-height: 1.2; }
+  .logo-text .sub { font-size: 13px; color: rgba(255,255,255,0.6); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+  nav { display: flex; align-items: center; gap: 4px; }
+  nav a {
+    color: rgba(255,255,255,0.82);
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 4px;
+    font-size: 14.5px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    transition: all 0.2s;
+  }
+  nav a:hover { color: white; background: rgba(255,255,255,0.12); }
+  nav a.active { color: var(--gold-light); }
+
+  .admin-btn {
+    background: var(--gold);
+    color: var(--navy) !important;
+    font-weight: 700 !important;
+    padding: 8px 18px !important;
+    border-radius: 4px !important;
+    margin-left: 8px;
+    transition: all 0.2s !important;
+  }
+  .admin-btn:hover { background: var(--gold-light) !important; }
+
+  /* ─── SECTIONS ─── */
+  .page-section { display: none; }
+  .page-section.active { display: block; }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 60%, #1e3d5a 100%);
+    padding: 80px 40px;
+    position: relative; overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1' fill='rgba(200,151,58,0.12)'/%3E%3C/svg%3E");
+    opacity: 0.8;
+  }
+
+  .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; }
+
+  .hero-left h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 46px;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .hero-left h1 span { color: var(--gold-light); display: block; }
+
+  .hero-left p { color: rgba(255,255,255,0.75); font-size: 17px; margin-bottom: 32px; max-width: 460px; }
+
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 13px 28px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    border: none; cursor: pointer;
+    transition: all 0.2s;
+    display: inline-block;
+    font-family: inherit;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    padding: 13px 28px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    border: 2px solid rgba(255,255,255,0.4);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-block;
+    font-family: inherit;
+  }
+  .btn-secondary:hover { border-color: white; background: rgba(255,255,255,0.08); }
+
+  .hero-stats {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 36px 32px;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero-stats h3 { font-family: 'Playfair Display', serif; color: var(--gold-light); margin-bottom: 24px; font-size: 18px; }
+
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 36px; color: white; font-weight: 700; }
+  .stat-label { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 4px; }
+
+  /* ─── CONTENT LAYOUT ─── */
+  .content-wrap { max-width: 1100px; margin: 0 auto; padding: 60px 40px; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 340px; gap: 50px; align-items: start; }
+
+  /* ─── SECTION LABEL ─── */
+  .section-label {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .section-label::before { content: ''; width: 24px; height: 2px; background: var(--gold); }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: var(--navy);
+    margin-bottom: 28px;
+    line-height: 1.25;
+  }
+
+  /* ─── NEWS CARDS ─── */
+  .news-list { display: flex; flex-direction: column; gap: 24px; }
+
+  .news-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .news-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.10); transform: translateY(-2px); }
+
+  .news-card-badge {
+    width: 6px; flex-shrink: 0;
+    background: var(--gold);
+  }
+
+  .news-card-body { padding: 20px 22px; flex: 1; }
+  .news-card-date { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .news-card-title { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--navy); margin-bottom: 8px; line-height: 1.35; }
+  .news-card-body p { font-size: 14.5px; color: var(--text-muted); }
+
+  .news-card.featured .news-card-badge { background: var(--navy); width: 8px; }
+  .news-card.featured .news-card-title { font-size: 20px; }
+
+  /* ─── SIDEBAR ─── */
+  .sidebar { display: flex; flex-direction: column; gap: 28px; }
+
+  .sidebar-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .sidebar-card-header {
+    background: var(--navy);
+    color: white;
+    padding: 14px 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .sidebar-card-body { padding: 20px; }
+
+  /* ─── CALENDAR ─── */
+  .calendar { width: 100%; }
+
+  .cal-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .cal-header button {
+    background: none; border: 1px solid var(--border);
+    width: 28px; height: 28px; border-radius: 50%;
+    cursor: pointer; font-size: 14px; color: var(--text-muted);
+    transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cal-header button:hover { background: var(--navy); color: white; border-color: var(--navy); }
+  .cal-month { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--navy); font-weight: 600; }
+
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; text-align: center; }
+
+  .cal-day-name { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; color: var(--text-muted); padding: 4px 0; text-transform: uppercase; }
+
+  .cal-day {
+    padding: 6px 0;
+    font-size: 13px;
+    border-radius: 4px;
+    cursor: default;
+    color: var(--text);
+    position: relative;
+  }
+  .cal-day.empty { color: transparent; }
+  .cal-day.today { background: var(--navy); color: white; font-weight: 700; border-radius: 50%; }
+  .cal-day.has-event {
+    background: rgba(200,151,58,0.18);
+    color: var(--navy);
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  .cal-day.has-event:hover { background: var(--gold); color: white; }
+  .cal-day.has-event.today { background: var(--navy); color: var(--gold-light); }
+
+  .upcoming-events { display: flex; flex-direction: column; gap: 12px; }
+
+  .event-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+  .event-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .event-date-badge {
+    background: var(--navy);
+    color: white;
+    border-radius: 6px;
+    padding: 6px 10px;
+    text-align: center;
+    flex-shrink: 0;
+    min-width: 42px;
+  }
+  .event-date-badge .day { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; line-height: 1; }
+  .event-date-badge .mon { font-size: 10px; letter-spacing: 0.5px; opacity: 0.8; text-transform: uppercase; }
+
+  .event-info { flex: 1; }
+  .event-title { font-size: 14px; font-weight: 600; color: var(--navy); line-height: 1.3; }
+  .event-loc { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
+
+  /* ─── INFO CARDS ─── */
+  .info-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 50px; }
+
+  .info-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px 24px;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .info-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.10); transform: translateY(-3px); border-color: var(--gold); }
+
+  .info-card .icon { font-size: 36px; margin-bottom: 14px; }
+  .info-card h3 { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--navy); margin-bottom: 8px; }
+  .info-card p { font-size: 14px; color: var(--text-muted); }
+
+  /* ─── FEATURED BANNER ─── */
+  .featured-banner {
+    background: linear-gradient(120deg, var(--navy) 0%, var(--navy-light) 100%);
+    border-radius: 10px;
+    padding: 32px 36px;
+    color: white;
+    display: flex; align-items: center; gap: 24px;
+    margin-bottom: 32px;
+    position: relative; overflow: hidden;
+  }
+  .featured-banner::after {
+    content: '★';
+    position: absolute; right: 30px; top: 50%; transform: translateY(-50%);
+    font-size: 80px; opacity: 0.07; color: var(--gold);
+  }
+
+  .featured-banner .label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px; }
+  .featured-banner h2 { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 8px; }
+  .featured-banner p { font-size: 14px; color: rgba(255,255,255,0.75); }
+
+  /* ─── INNER PAGES ─── */
+  .inner-header {
+    background: var(--navy);
+    padding: 50px 40px;
+    text-align: center;
+  }
+  .inner-header h1 { font-family: 'Playfair Display', serif; font-size: 38px; color: white; margin-bottom: 10px; }
+  .inner-header p { color: rgba(255,255,255,0.65); font-size: 16px; }
+
+  .inner-content { max-width: 900px; margin: 0 auto; padding: 60px 40px; }
+
+  /* ─── ABOUT ─── */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; margin-bottom: 50px; }
+  .about-text p { margin-bottom: 16px; color: var(--text-muted); font-size: 16px; }
+  .about-box { background: var(--cream-dark); border-left: 4px solid var(--gold); padding: 24px; border-radius: 0 6px 6px 0; }
+  .about-box h3 { font-family: 'Playfair Display', serif; color: var(--navy); margin-bottom: 12px; }
+  .about-box ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .about-box ul li::before { content: '✦ '; color: var(--gold); font-size: 10px; }
+  .about-box ul li { font-size: 15px; color: var(--text-muted); }
+
+  .board-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .board-card {
+    background: white; border: 1px solid var(--border); border-radius: 8px; padding: 24px; text-align: center;
+  }
+  .board-card .avatar {
+    width: 64px; height: 64px; background: var(--navy); border-radius: 50%;
+    margin: 0 auto 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; color: var(--gold-light);
+  }
+  .board-card h4 { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--navy); }
+  .board-card .role { font-size: 13px; color: var(--gold); margin-top: 4px; }
+
+  /* ─── EVENTS PAGE ─── */
+  .events-list { display: flex; flex-direction: column; gap: 20px; }
+  .event-card {
+    background: white; border: 1px solid var(--border); border-radius: 8px;
+    padding: 24px; display: flex; gap: 24px; align-items: flex-start;
+    transition: all 0.2s;
+  }
+  .event-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(-2px); }
+  .event-card .big-date { background: var(--navy); color: white; border-radius: 8px; padding: 12px 16px; text-align: center; flex-shrink: 0; min-width: 64px; }
+  .event-card .big-date .dd { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; line-height: 1; }
+  .event-card .big-date .mm { font-size: 12px; opacity: 0.75; text-transform: uppercase; letter-spacing: 0.5px; }
+  .event-card .big-date .yy { font-size: 11px; opacity: 0.5; }
+  .event-card-body h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--navy); margin-bottom: 6px; }
+  .event-card-body p { font-size: 15px; color: var(--text-muted); margin-bottom: 8px; }
+  .event-meta { display: flex; gap: 20px; flex-wrap: wrap; }
+  .event-meta span { font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
+
+  /* ─── CONTACT ─── */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .contact-info-item { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 24px; }
+  .contact-icon { font-size: 22px; flex-shrink: 0; width: 44px; height: 44px; background: var(--cream-dark); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+  .contact-info-item h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 4px; }
+  .contact-info-item p { font-size: 16px; color: var(--navy); }
+
+  .contact-form { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 32px; }
+  .form-group { margin-bottom: 18px; }
+  .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .form-group input, .form-group textarea {
+    width: 100%; padding: 11px 14px;
+    border: 1px solid var(--border); border-radius: 6px;
+    font-family: inherit; font-size: 15px; color: var(--text);
+    background: var(--cream);
+    outline: none; transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--navy); background: white; }
+  .form-group textarea { height: 120px; resize: vertical; }
+
+  /* ─── SERVICES ─── */
+  .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .service-card { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 28px; }
+  .service-card .svc-icon { font-size: 32px; margin-bottom: 14px; }
+  .service-card h3 { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--navy); margin-bottom: 10px; }
+  .service-card p { font-size: 15px; color: var(--text-muted); }
+
+  /* ─── ADMIN PANEL ─── */
+  .admin-wrap { max-width: 1000px; margin: 0 auto; padding: 40px; }
+  .admin-header-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
+  .admin-header-bar h2 { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--navy); }
+  .admin-tabs { display: flex; gap: 8px; margin-bottom: 28px; }
+  .admin-tab {
+    padding: 9px 20px; border-radius: 6px; border: 1px solid var(--border);
+    cursor: pointer; font-family: inherit; font-size: 14px; background: white;
+    color: var(--text-muted); transition: all 0.2s;
+  }
+  .admin-tab.active { background: var(--navy); color: white; border-color: var(--navy); }
+
+  .admin-panel { display: none; }
+  .admin-panel.active { display: block; }
+
+  .admin-form { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 28px; margin-bottom: 28px; }
+  .admin-form h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--navy); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--cream-dark); }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .admin-list { display: flex; flex-direction: column; gap: 12px; }
+  .admin-item {
+    background: white; border: 1px solid var(--border); border-radius: 8px;
+    padding: 16px 20px; display: flex; align-items: center; gap: 16px;
+  }
+  .admin-item-text { flex: 1; }
+  .admin-item-text strong { font-size: 15px; color: var(--navy); }
+  .admin-item-text span { font-size: 13px; color: var(--text-muted); display: block; margin-top: 2px; }
+  .admin-item-actions { display: flex; gap: 8px; }
+  .btn-icon {
+    width: 32px; height: 32px; border: 1px solid var(--border); background: white;
+    border-radius: 6px; cursor: pointer; font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .btn-icon:hover { background: var(--cream-dark); }
+  .btn-icon.del:hover { background: #fff0f0; border-color: #f0a0a0; }
+  .featured-toggle {
+    width: 32px; height: 32px; border: 1px solid var(--border); background: white;
+    border-radius: 6px; cursor: pointer; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .featured-toggle.on { background: var(--gold); border-color: var(--gold); color: white; }
+
+  .admin-notice {
+    background: #edf7ed; border: 1px solid #a8d8a8; border-radius: 6px; padding: 12px 16px;
+    font-size: 14px; color: #2d6a2d; margin-bottom: 16px; display: none;
+  }
+  .admin-notice.show { display: block; }
+
+  /* ─── FOOTER ─── */
+  footer { background: var(--navy); color: rgba(255,255,255,0.7); padding: 50px 40px 28px; margin-top: 80px; }
+  .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: white; margin-bottom: 12px; }
+  .footer-desc { font-size: 14px; line-height: 1.6; }
+  .footer-col h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold-light); margin-bottom: 14px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .footer-col ul li a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: white; }
+  .footer-bottom { max-width: 1100px; margin: 20px auto 0; display: flex; justify-content: space-between; font-size: 13px; color: rgba(255,255,255,0.4); }
+
+  /* ─── LOGIN MODAL ─── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55);
+    z-index: 1000; align-items: center; justify-content: center;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal-box { background: white; border-radius: 10px; padding: 40px; width: 380px; max-width: 95vw; box-shadow: 0 20px 60px rgba(0,0,0,0.25); }
+  .modal-box h2 { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--navy); margin-bottom: 6px; }
+  .modal-box p { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
+  .modal-close { position: absolute; right: 0; top: 0; width: 32px; height: 32px; background: none; border: none; cursor: pointer; font-size: 20px; color: var(--text-muted); }
+  .modal-box-inner { position: relative; }
+  .login-error { background: #fff0f0; border: 1px solid #f0a0a0; border-radius: 6px; padding: 10px 14px; font-size: 14px; color: #c0392b; margin-bottom: 14px; display: none; }
+  .login-error.show { display: block; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-stats { display: none; }
+    .two-col { grid-template-columns: 1fr; }
+    .about-grid, .contact-grid, .board-grid, .services-grid, .info-cards, .form-row { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    nav { display: none; }
+    .header-main { justify-content: center; }
+    .hero-left h1 { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal-box">
+    <div class="modal-box-inner">
+      <h2>Admin prijava</h2>
+      <p>Unesite lozinku za pristup administratorskom panelu.</p>
+      <div class="login-error" id="loginError">Pogrešna lozinka. Pokušajte ponovo.</div>
+      <div class="form-group">
+        <label>Lozinka</label>
+        <input type="password" id="loginPassword" placeholder="Unesite lozinku" onkeydown="if(event.key==='Enter')doLogin()">
+      </div>
+      <div style="display:flex;gap:12px;margin-top:8px;">
+        <button class="btn-primary" onclick="doLogin()" style="flex:1">Prijavi se</button>
+        <button class="btn-secondary" onclick="closeModal()" style="flex:1">Otkaži</button>
+      </div>
+      <p style="font-size:12px;color:var(--text-muted);margin-top:14px;text-align:center;">Demo lozinka: <strong>admin123</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-top">
+    <span>📞 +381 11 123-456 &nbsp;|&nbsp; ✉ kontakt@up-mladenovac.rs</span>
+    <span>Radno vreme: Pon–Pet 9:00–16:00</span>
+  </div>
+  <div class="header-main">
+    <div class="logo-area">
+      <div class="logo-icon">🤝</div>
+      <div class="logo-text">
+        <div class="title">Udruženje Penzionera Mladenovac</div>
+        <div class="sub">Opštinska organizacija · Osnov. 1970.</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#" class="active" onclick="showPage('home',this)">Naslovna</a>
+      <a href="#" onclick="showPage('about',this)">O nama</a>
+      <a href="#" onclick="showPage('events',this)">Aktivnosti</a>
+      <a href="#" onclick="showPage('services',this)">Usluge</a>
+      <a href="#" onclick="showPage('contact',this)">Kontakt</a>
+      <a href="#" class="admin-btn" onclick="openAdminOrLogin(event)">⚙ Admin</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ════════════════ HOME ════════════════ -->
+<div id="page-home" class="page-section active">
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="section-label">Dobrodošli</div>
+        <h1>Udruženje Penzionera <span>Mladenovac</span></h1>
+        <p>Ovde se susrećemo, pomažemo jedni drugima i zajednički gradimo lepšu svakodnevicu za penzionere naše opštine.</p>
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="showPage('events', document.querySelector('nav a:nth-child(3)'))">Predstojeće aktivnosti</button>
+          <button class="btn-secondary" onclick="showPage('about', document.querySelector('nav a:nth-child(2)'))">Saznajte više</button>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <h3>Naše udruženje u brojevima</h3>
+        <div class="stat-grid">
+          <div class="stat"><div class="stat-num">1.800+</div><div class="stat-label">Članova</div></div>
+          <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Godina rada</div></div>
+          <div class="stat"><div class="stat-num">12</div><div class="stat-label">Sekcija</div></div>
+          <div class="stat"><div class="stat-num">40+</div><div class="stat-label">Aktivnosti godišnje</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+    <!-- Featured banner -->
+    <div id="featuredBanner" class="featured-banner" style="display:none">
+      <div>
+        <div class="label">Istaknuto obaveštenje</div>
+        <h2 id="featuredTitle"></h2>
+        <p id="featuredDesc"></p>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="section-label">Vesti i obaveštenja</div>
+        <h2 class="section-title">Najnovije informacije</h2>
+        <div class="news-list" id="newsList">
+          <!-- filled by JS -->
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <!-- Calendar -->
+        <div class="sidebar-card">
+          <div class="sidebar-card-header">📅 Kalendar aktivnosti</div>
+          <div class="sidebar-card-body">
+            <div class="calendar" id="miniCal"></div>
+          </div>
+        </div>
+        <!-- Upcoming events -->
+        <div class="sidebar-card">
+          <div class="sidebar-card-header">🔔 Predstojeće aktivnosti</div>
+          <div class="sidebar-card-body">
+            <div class="upcoming-events" id="upcomingEvents"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info cards -->
+    <div class="info-cards">
+      <div class="info-card" onclick="showPage('services', document.querySelector('nav a:nth-child(4)'))">
+        <div class="icon">🏥</div>
+        <h3>Zdravstvene usluge</h3>
+        <p>Organizovanje preventivnih pregleda i savetovališta za članove udruženja.</p>
+      </div>
+      <div class="info-card" onclick="showPage('services', document.querySelector('nav a:nth-child(4)'))">
+        <div class="icon">✈️</div>
+        <h3>Izleti i putovanja</h3>
+        <p>Jednodnevni i višednevni izleti po povlašćenim cenama za naše članove.</p>
+      </div>
+      <div class="info-card" onclick="showPage('services', document.querySelector('nav a:nth-child(4)'))">
+        <div class="icon">🎭</div>
+        <h3>Kulturne aktivnosti</h3>
+        <p>Horske sekcije, likovne radionice, predavanja i kulturno-umetničke priredbe.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ ABOUT ════════════════ -->
+<div id="page-about" class="page-section">
+  <div class="inner-header">
+    <h1>O udruženju</h1>
+    <p>Saznajte više o našoj organizaciji, istorijatu i upravi</p>
+  </div>
+  <div class="inner-content">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label">Naša misija</div>
+        <h2 class="section-title">Ko smo mi?</h2>
+        <p>Udruženje penzionera Mladenovac je neprofitna, nevladina organizacija koja zastupa interese penzionera na teritoriji opštine Mladenovac. Osnovana 1970. godine, naša organizacija je tokom decenija postala oslonac za hiljadama penzionera koji traže podršku, drugarstvo i aktivno provođenje slobodnog vremena.</p>
+        <p>Naš cilj je osigurati dostojanstven i aktivan život za sve penzionere, kroz organizaciju različitih aktivnosti, pružanje socijalnih usluga i zagovaranje prava penzionera pred nadležnim organima.</p>
+      </div>
+      <div>
+        <div class="about-box">
+          <h3>Naše aktivnosti obuhvataju</h3>
+          <ul>
+            <li>Organizovanje kulturnih i sportskih događaja</li>
+            <li>Pomoć u ostvarivanju prava penzionera</li>
+            <li>Organizovanje izleta i putovanja</li>
+            <li>Saradnju sa zdravstvenim ustanovama</li>
+            <li>Radionice i edukativne programe</li>
+            <li>Humanitarne akcije i solidarnost</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">Uprava</div>
+    <h2 class="section-title">Upravni odbor</h2>
+    <div class="board-grid">
+      <div class="board-card">
+        <div class="avatar">👨</div>
+        <h4>Ime i Prezime</h4>
+        <div class="role">Predsednik</div>
+      </div>
+      <div class="board-card">
+        <div class="avatar">👩</div>
+        <h4>Ime i Prezime</h4>
+        <div class="role">Potpredsednik</div>
+      </div>
+      <div class="board-card">
+        <div class="avatar">👨</div>
+        <h4>Ime i Prezime</h4>
+        <div class="role">Sekretar</div>
+      </div>
+      <div class="board-card">
+        <div class="avatar">👩</div>
+        <h4>Ime i Prezime</h4>
+        <div class="role">Blagajnik</div>
+      </div>
+      <div class="board-card">
+        <div class="avatar">👨</div>
+        <h4>Ime i Prezime</h4>
+        <div class="role">Član UO</div>
+      </div>
+      <div class="board-card">
+        <div class="avatar">👩</div>
+        <h4>Ime i Prezime</h4>
+        <div class="role">Član UO</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ EVENTS ════════════════ -->
+<div id="page-events" class="page-section">
+  <div class="inner-header">
+    <h1>Aktivnosti i događaji</h1>
+    <p>Raspored svih predstojecih i prošlih aktivnosti udruženja</p>
+  </div>
+  <div class="inner-content" style="max-width:1000px">
+    <div class="section-label">Kalendar</div>
+    <h2 class="section-title">Predstojeće aktivnosti</h2>
+    <div class="events-list" id="eventsPageList"></div>
+  </div>
+</div>
+
+<!-- ════════════════ SERVICES ════════════════ -->
+<div id="page-services" class="page-section">
+  <div class="inner-header">
+    <h1>Usluge</h1>
+    <p>Šta nudimo našim članovima</p>
+  </div>
+  <div class="inner-content">
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="svc-icon">🏥</div>
+        <h3>Zdravstvena zaštita</h3>
+        <p>Organizujemo periodične preventivne preglede u saradnji sa Domom zdravlja Mladenovac, merenje pritiska, šećera i savetovališta.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">✈️</div>
+        <h3>Izleti i putovanja</h3>
+        <p>Organizujemo jednodnevne izlete, rekreativna putovanja u banje i destinacije u Srbiji i inostranstvu po povlašćenim cenama.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">🎭</div>
+        <h3>Kulturne sekcije</h3>
+        <p>Hor, likovna sekcija, folklorni ansambl, kulinarska sekcija i plesna grupa — nešto za svaki ukus.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">⚖️</div>
+        <h3>Pravna pomoć</h3>
+        <p>Pomoć u ostvarivanju penzionerskih prava, podnošenju žalbi i komunikaciji sa nadležnim institucijama.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">💻</div>
+        <h3>Digitalna pismenost</h3>
+        <p>Kursevi rada na računaru, pametnom telefonu i internetu. Pomoć pri korišćenju e-usluga državnih organa.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">🤝</div>
+        <h3>Socijalna podrška</h3>
+        <p>Humanitarne akcije, posete usamljenim penzionerima i organizovanje solidarne pomoći ugroženim članovima.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ CONTACT ════════════════ -->
+<div id="page-contact" class="page-section">
+  <div class="inner-header">
+    <h1>Kontakt</h1>
+    <p>Slobodno nam se obratite sa svim pitanjima i sugestijama</p>
+  </div>
+  <div class="inner-content">
+    <div class="contact-grid">
+      <div>
+        <div class="section-label">Naše informacije</div>
+        <h2 class="section-title">Kako nas pronaći</h2>
+        <div class="contact-info-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h4>Adresa</h4>
+            <p>Ul. Kosmajska 12<br>11400 Mladenovac</p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <h4>Telefon</h4>
+            <p>+381 11 123-456</p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <h4>E-mail</h4>
+            <p>kontakt@up-mladenovac.rs</p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <h4>Radno vreme</h4>
+            <p>Ponedeljak – Petak<br>9:00 – 16:00</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="contact-form">
+          <div class="section-label">Pišite nam</div>
+          <h3 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:22px;margin-bottom:20px;">Pošaljite poruku</h3>
+          <div class="form-group">
+            <label>Vaše ime</label>
+            <input type="text" placeholder="Ime i prezime">
+          </div>
+          <div class="form-group">
+            <label>E-mail adresa</label>
+            <input type="email" placeholder="vas@email.com">
+          </div>
+          <div class="form-group">
+            <label>Poruka</label>
+            <textarea placeholder="Vaša poruka..."></textarea>
+          </div>
+          <button class="btn-primary" style="width:100%" onclick="alert('Poruka poslata! Javićemo vam se uskoro.')">Pošalji poruku</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ ADMIN ════════════════ -->
+<div id="page-admin" class="page-section">
+  <div class="inner-header">
+    <h1>⚙ Administratorski panel</h1>
+    <p>Upravljajte sadržajem sajta — vesti, događaji i istaknuto obaveštenje</p>
+  </div>
+  <div class="admin-wrap">
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="switchAdminTab('news', this)">📰 Vesti i obaveštenja</button>
+      <button class="admin-tab" onclick="switchAdminTab('events', this)">📅 Aktivnosti i događaji</button>
+      <button class="admin-tab" onclick="switchAdminTab('featured', this)">⭐ Istaknuto obaveštenje</button>
+    </div>
+
+    <!-- News panel -->
+    <div id="admin-news" class="admin-panel active">
+      <div class="admin-form">
+        <h3>Dodaj novu vest / obaveštenje</h3>
+        <div class="form-group">
+          <label>Naslov</label>
+          <input type="text" id="newsTitle" placeholder="Naslov vesti ili obaveštenja">
+        </div>
+        <div class="form-group">
+          <label>Kratki opis</label>
+          <textarea id="newsDesc" placeholder="Kratak opis..."></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Datum</label>
+            <input type="date" id="newsDate">
+          </div>
+          <div class="form-group">
+            <label>Kategorija</label>
+            <select id="newsCategory" style="width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:15px;background:var(--cream);">
+              <option value="Obaveštenje">Obaveštenje</option>
+              <option value="Vest">Vest</option>
+              <option value="Izveštaj">Izveštaj</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;margin-top:4px;">
+          <button class="btn-primary" onclick="addNews()">Dodaj vest</button>
+          <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;">
+            <input type="checkbox" id="newsFeatured" style="width:16px;height:16px;">
+            Prikaži kao istaknuto na naslovnoj
+          </label>
+        </div>
+      </div>
+      <div class="admin-notice" id="newsNotice">✓ Vest uspešno sačuvana!</div>
+      <h3 style="font-family:'Playfair Display',serif;color:var(--navy);margin-bottom:14px;">Sve vesti</h3>
+      <div class="admin-list" id="adminNewsList"></div>
+    </div>
+
+    <!-- Events panel -->
+    <div id="admin-events" class="admin-panel">
+      <div class="admin-form">
+        <h3>Dodaj novu aktivnost / događaj</h3>
+        <div class="form-group">
+          <label>Naziv aktivnosti</label>
+          <input type="text" id="evtTitle" placeholder="Naziv aktivnosti ili događaja">
+        </div>
+        <div class="form-group">
+          <label>Opis</label>
+          <textarea id="evtDesc" placeholder="Kratki opis aktivnosti..."></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Datum</label>
+            <input type="date" id="evtDate">
+          </div>
+          <div class="form-group">
+            <label>Vreme</label>
+            <input type="time" id="evtTime" value="10:00">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Lokacija</label>
+          <input type="text" id="evtLocation" placeholder="Npr. Dom kulture Mladenovac">
+        </div>
+        <button class="btn-primary" onclick="addEvent()">Dodaj aktivnost</button>
+      </div>
+      <div class="admin-notice" id="evtNotice">✓ Aktivnost uspešno sačuvana!</div>
+      <h3 style="font-family:'Playfair Display',serif;color:var(--navy);margin-bottom:14px;">Sve aktivnosti</h3>
+      <div class="admin-list" id="adminEventsList"></div>
+    </div>
+
+    <!-- Featured panel -->
+    <div id="admin-featured" class="admin-panel">
+      <div class="admin-form">
+        <h3>Istaknuto obaveštenje na naslovnoj strani</h3>
+        <p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;">Ovo obaveštenje se prikazuje prominentno na vrhu naslovne strane. Koristite ga za važna saopštenja.</p>
+        <div class="form-group">
+          <label>Naslov</label>
+          <input type="text" id="featTitle" placeholder="Naslov istaknutog obaveštenja">
+        </div>
+        <div class="form-group">
+          <label>Tekst obaveštenja</label>
+          <textarea id="featDesc" placeholder="Sadržaj obaveštenja..."></textarea>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;">
+          <button class="btn-primary" onclick="saveFeatured()">Sačuvaj istaknuto</button>
+          <button class="btn-secondary" onclick="clearFeatured()">Ukloni sa naslovne</button>
+        </div>
+        <div class="admin-notice" id="featNotice" style="margin-top:14px;">✓ Istaknuto obaveštenje ažurirano!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">🤝 Udruženje Penzionera Mladenovac</div>
+      <p class="footer-desc">Organizacija koja od 1970. godine brine o dostojanstvenom i aktivnom životu penzionera opštine Mladenovac.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigacija</h4>
+      <ul>
+        <li><a href="#" onclick="showPage('home')">Naslovna</a></li>
+        <li><a href="#" onclick="showPage('about')">O nama</a></li>
+        <li><a href="#" onclick="showPage('events')">Aktivnosti</a></li>
+        <li><a href="#" onclick="showPage('services')">Usluge</a></li>
+        <li><a href="#" onclick="showPage('contact')">Kontakt</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Korisni linkovi</h4>
+      <ul>
+        <li><a href="https://www.minrzs.gov.rs/" target="_blank">Min. za rad i soc. pitanja</a></li>
+        <li><a href="https://www.pio.rs/" target="_blank">PIO Fond</a></li>
+        <li><a href="https://www.mladenovac.rs/" target="_blank">Opština Mladenovac</a></li>
+        <li><a href="#" target="_blank">Magazin Penzin</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <ul>
+        <li><a href="#">📍 Ul. Kosmajska 12</a></li>
+        <li><a href="#">📞 +381 11 123-456</a></li>
+        <li><a href="#">✉ kontakt@up-mladenovac.rs</a></li>
+        <li><a href="#">🕐 Pon–Pet 9:00–16:00</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Udruženje Penzionera Mladenovac. Sva prava zadržana.</span>
+    <span>Dizajniran sa ❤ za naše penzionere</span>
+  </div>
+</footer>
+
+<script>
+// ─── STATE ───
+const ADMIN_PASS = "admin123";
+let isLoggedIn = false;
+
+const srMonths = ["Januar","Februar","Mart","April","Maj","Jun","Jul","Avgust","Septembar","Oktobar","Novembar","Decembar"];
+const srMonthsShort = ["Jan","Feb","Mar","Apr","Maj","Jun","Jul","Avg","Sep","Okt","Nov","Dec"];
+const srDays = ["Po","Ut","Sr","Če","Pe","Su","Ne"];
+
+const today = new Date();
+let calYear = today.getFullYear();
+let calMonth = today.getMonth();
+
+// Seed data
+let newsItems = [
+  { id: 1, title: "Redovna skupština udruženja", desc: "Obaveštavamo sve članove da će redovna godišnja skupština biti održana u Domu kulture.", date: "2026-04-10", cat: "Obaveštenje", featured: false },
+  { id: 2, title: "Uspešno okončana humanitarna akcija", desc: "Zahvaljujemo svim članovima koji su učestvovali u prikupljanju paketa za ugrožene penzionere.", date: "2026-03-28", cat: "Izveštaj", featured: false },
+  { id: 3, title: "Novi kurs digitalne pismenosti", desc: "Prijave za prolećni kurs rada na računaru i pametnom telefonu su u toku. Mesta su ograničena.", date: "2026-03-20", cat: "Vest", featured: true },
+];
+
+let events = [
+  { id: 1, title: "Proslava 1. maja – Dan rada", desc: "Svečana priredba i zajednički ručak za sve članove u prostorijama udruženja.", date: "2026-05-01", time: "11:00", location: "Prostor udruženja, ul. Kosmajska 12" },
+  { id: 2, title: "Jednodnevni izlet u Topolu", desc: "Poseta Crkvi Svetog Đorđa i Oplencu. Prevoz obezbeđen autobusom.", date: "2026-04-18", time: "08:00", location: "Polazak ispred Doma kulture" },
+  { id: 3, title: "Merenje krvnog pritiska i šećera", desc: "U saradnji sa Domom zdravlja, organizujemo besplatne preventivne preglede.", date: "2026-04-08", time: "09:00", location: "Dom zdravlja Mladenovac" },
+  { id: 4, title: "Redovna skupština udruženja", desc: "Godišnja skupština sa izveštajima o radu i planom za 2026. godinu.", date: "2026-04-10", time: "10:00", location: "Dom kulture Mladenovac" },
+];
+
+let featured = { title: "", desc: "", active: false };
+
+// ─── NAVIGATION ───
+function showPage(id, linkEl) {
+  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('nav a:not(.admin-btn)').forEach(a => a.classList.remove('active'));
+  if (linkEl) linkEl.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (id === 'home') { renderNews(); renderCalendar(); renderUpcoming(); renderFeatured(); }
+  if (id === 'events') renderEventsPage();
+  if (id === 'admin') { renderAdminNews(); renderAdminEvents(); }
+}
+
+function openAdminOrLogin(e) {
+  e.preventDefault();
+  if (isLoggedIn) {
+    showPage('admin', e.target);
+  } else {
+    document.getElementById('loginModal').classList.add('show');
+    setTimeout(() => document.getElementById('loginPassword').focus(), 100);
+  }
+}
+
+function doLogin() {
+  const pw = document.getElementById('loginPassword').value;
+  if (pw === ADMIN_PASS) {
+    isLoggedIn = true;
+    document.getElementById('loginModal').classList.remove('show');
+    document.getElementById('loginPassword').value = '';
+    document.getElementById('loginError').classList.remove('show');
+    showPage('admin', document.querySelector('.admin-btn'));
+  } else {
+    document.getElementById('loginError').classList.add('show');
+  }
+}
+
+function closeModal() {
+  document.getElementById('loginModal').classList.remove('show');
+  document.getElementById('loginPassword').value = '';
+  document.getElementById('loginError').classList.remove('show');
+}
+
+// ─── RENDER NEWS ───
+function renderNews() {
+  const sorted = [...newsItems].sort((a,b) => new Date(b.date) - new Date(a.date));
+  const el = document.getElementById('newsList');
+  el.innerHTML = sorted.slice(0,5).map(n => `
+    <div class="news-card ${n.featured?'featured':''}">
+      <div class="news-card-badge"></div>
+      <div class="news-card-body">
+        <div class="news-card-date">${formatDate(n.date)} · ${n.cat}</div>
+        <div class="news-card-title">${n.title}</div>
+        <p>${n.desc}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderFeatured() {
+  const f = newsItems.find(n => n.featured);
+  const banner = document.getElementById('featuredBanner');
+  if (f) {
+    document.getElementById('featuredTitle').textContent = f.title;
+    document.getElementById('featuredDesc').textContent = f.desc;
+    banner.style.display = 'flex';
+  } else if (featured.active) {
+    document.getElementById('featuredTitle').textContent = featured.title;
+    document.getElementById('featuredDesc').textContent = featured.desc;
+    banner.style.display = 'flex';
+  } else {
+    banner.style.display = 'none';
+  }
+}
+
+// ─── RENDER CALENDAR ───
+function renderCalendar() {
+  const el = document.getElementById('miniCal');
+  const firstDay = new Date(calYear, calMonth, 1).getDay();
+  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+  const startCol = firstDay === 0 ? 6 : firstDay - 1;
+
+  const eventDays = new Set(events.map(e => {
+    const d = new Date(e.date);
+    if (d.getFullYear() === calYear && d.getMonth() === calMonth) return d.getDate();
+    return null;
+  }).filter(Boolean));
+
+  let html = `
+    <div class="cal-header">
+      <button onclick="prevMonth()">‹</button>
+      <div class="cal-month">${srMonths[calMonth]} ${calYear}</div>
+      <button onclick="nextMonth()">›</button>
+    </div>
+    <div class="cal-grid">
+      ${srDays.map(d => `<div class="cal-day-name">${d}</div>`).join('')}
+  `;
+
+  for (let i = 0; i < startCol; i++) html += `<div class="cal-day empty"></div>`;
+  for (let d = 1; d <= daysInMonth; d++) {
+    const isToday = d === today.getDate() && calMonth === today.getMonth() && calYear === today.getFullYear();
+    const hasEv = eventDays.has(d);
+    let cls = 'cal-day';
+    if (isToday) cls += ' today';
+    if (hasEv) cls += ' has-event';
+    html += `<div class="${cls}">${d}</div>`;
+  }
+  html += `</div>`;
+  el.innerHTML = html;
+}
+
+function prevMonth() {
+  calMonth--;
+  if (calMonth < 0) { calMonth = 11; calYear--; }
+  renderCalendar();
+}
+function nextMonth() {
+  calMonth++;
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  renderCalendar();
+}
+
+// ─── RENDER UPCOMING ───
+function renderUpcoming() {
+  const now = new Date(); now.setHours(0,0,0,0);
+  const upcoming = events.filter(e => new Date(e.date) >= now).sort((a,b) => new Date(a.date) - new Date(b.date)).slice(0,4);
+  const el = document.getElementById('upcomingEvents');
+  if (!upcoming.length) { el.innerHTML = '<p style="font-size:14px;color:var(--text-muted)">Nema predstojecih aktivnosti.</p>'; return; }
+  el.innerHTML = upcoming.map(e => {
+    const d = new Date(e.date);
+    return `
+      <div class="event-item">
+        <div class="event-date-badge">
+          <div class="day">${d.getDate()}</div>
+          <div class="mon">${srMonthsShort[d.getMonth()]}</div>
+        </div>
+        <div class="event-info">
+          <div class="event-title">${e.title}</div>
+          <div class="event-loc">📍 ${e.location}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ─── RENDER EVENTS PAGE ───
+function renderEventsPage() {
+  const now = new Date(); now.setHours(0,0,0,0);
+  const sorted = [...events].sort((a,b) => new Date(a.date) - new Date(b.date));
+  const el = document.getElementById('eventsPageList');
+  el.innerHTML = sorted.map(e => {
+    const d = new Date(e.date);
+    const isPast = d < now;
+    return `
+      <div class="event-card" style="${isPast?'opacity:0.65':''}">
+        <div class="big-date" style="${isPast?'background:var(--text-muted)':''}">
+          <div class="dd">${d.getDate()}</div>
+          <div class="mm">${srMonthsShort[d.getMonth()]}</div>
+          <div class="yy">${d.getFullYear()}</div>
+        </div>
+        <div class="event-card-body">
+          <h3>${e.title}</h3>
+          <p>${e.desc}</p>
+          <div class="event-meta">
+            <span>🕐 ${e.time}</span>
+            <span>📍 ${e.location}</span>
+            ${isPast ? '<span style="color:#c0392b;font-weight:600">Završeno</span>' : '<span style="color:#27ae60;font-weight:600">Predstojeće</span>'}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ─── ADMIN: NEWS ───
+function addNews() {
+  const title = document.getElementById('newsTitle').value.trim();
+  const desc = document.getElementById('newsDesc').value.trim();
+  const date = document.getElementById('newsDate').value;
+  const cat = document.getElementById('newsCategory').value;
+  const feat = document.getElementById('newsFeatured').checked;
+  if (!title || !date) return alert('Unesite naslov i datum.');
+  if (feat) newsItems.forEach(n => n.featured = false); // only one featured at a time
+  newsItems.unshift({ id: Date.now(), title, desc, date, cat, featured: feat });
+  document.getElementById('newsTitle').value = '';
+  document.getElementById('newsDesc').value = '';
+  document.getElementById('newsDate').value = '';
+  document.getElementById('newsFeatured').checked = false;
+  showNotice('newsNotice');
+  renderAdminNews();
+}
+
+function renderAdminNews() {
+  const el = document.getElementById('adminNewsList');
+  if (!newsItems.length) { el.innerHTML = '<p style="color:var(--text-muted);font-size:14px">Nema unetih vesti.</p>'; return; }
+  el.innerHTML = newsItems.map(n => `
+    <div class="admin-item">
+      <div class="admin-item-text">
+        <strong>${n.title}</strong>
+        <span>${formatDate(n.date)} · ${n.cat}</span>
+      </div>
+      <div class="admin-item-actions">
+        <button class="featured-toggle ${n.featured?'on':''}" title="Istakni na naslovnoj" onclick="toggleFeaturedNews(${n.id})">⭐</button>
+        <button class="btn-icon del" title="Obriši" onclick="deleteNews(${n.id})">🗑</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleFeaturedNews(id) {
+  newsItems.forEach(n => n.featured = (n.id === id ? !n.featured : false));
+  renderAdminNews();
+}
+
+function deleteNews(id) {
+  if (!confirm('Obrisati vest?')) return;
+  newsItems = newsItems.filter(n => n.id !== id);
+  renderAdminNews();
+}
+
+// ─── ADMIN: EVENTS ───
+function addEvent() {
+  const title = document.getElementById('evtTitle').value.trim();
+  const desc = document.getElementById('evtDesc').value.trim();
+  const date = document.getElementById('evtDate').value;
+  const time = document.getElementById('evtTime').value;
+  const location = document.getElementById('evtLocation').value.trim();
+  if (!title || !date) return alert('Unesite naziv i datum aktivnosti.');
+  events.push({ id: Date.now(), title, desc, date, time: time||'10:00', location: location||'Prostor udruženja' });
+  document.getElementById('evtTitle').value = '';
+  document.getElementById('evtDesc').value = '';
+  document.getElementById('evtDate').value = '';
+  document.getElementById('evtLocation').value = '';
+  showNotice('evtNotice');
+  renderAdminEvents();
+  renderCalendar();
+  renderUpcoming();
+}
+
+function renderAdminEvents() {
+  const el = document.getElementById('adminEventsList');
+  const sorted = [...events].sort((a,b) => new Date(a.date) - new Date(b.date));
+  if (!events.length) { el.innerHTML = '<p style="color:var(--text-muted);font-size:14px">Nema unetih aktivnosti.</p>'; return; }
+  el.innerHTML = sorted.map(e => `
+    <div class="admin-item">
+      <div class="admin-item-text">
+        <strong>${e.title}</strong>
+        <span>${formatDate(e.date)} u ${e.time} · ${e.location}</span>
+      </div>
+      <div class="admin-item-actions">
+        <button class="btn-icon del" title="Obriši" onclick="deleteEvent(${e.id})">🗑</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function deleteEvent(id) {
+  if (!confirm('Obrisati aktivnost?')) return;
+  events = events.filter(e => e.id !== id);
+  renderAdminEvents();
+  renderCalendar();
+  renderUpcoming();
+}
+
+// ─── ADMIN: FEATURED ───
+function saveFeatured() {
+  featured.title = document.getElementById('featTitle').value.trim();
+  featured.desc = document.getElementById('featDesc').value.trim();
+  featured.active = !!(featured.title);
+  showNotice('featNotice');
+}
+function clearFeatured() {
+  featured.active = false;
+  document.getElementById('featTitle').value = '';
+  document.getElementById('featDesc').value = '';
+  showNotice('featNotice');
+}
+
+// ─── ADMIN TABS ───
+function switchAdminTab(tab, el) {
+  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('admin-'+tab).classList.add('active');
+}
+
+// ─── HELPERS ───
+function formatDate(str) {
+  const d = new Date(str);
+  return `${d.getDate()}. ${srMonthsShort[d.getMonth()]}. ${d.getFullYear()}.`;
+}
+
+function showNotice(id) {
+  const el = document.getElementById(id);
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+// ─── SET DEFAULT DATE INPUTS ───
+document.addEventListener('DOMContentLoaded', () => {
+  const td = today.toISOString().split('T')[0];
+  const nd = document.getElementById('newsDate');
+  const ed = document.getElementById('evtDate');
+  if (nd) nd.value = td;
+  if (ed) ed.value = td;
+  renderNews();
+  renderCalendar();
+  renderUpcoming();
+  renderFeatured();
+});
+</script>
+</body>
+</html>
