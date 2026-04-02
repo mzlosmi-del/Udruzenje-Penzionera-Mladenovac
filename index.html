@@ -668,6 +668,7 @@
     <nav id="mainNav" aria-label="Glavna navigacija">
       <a href="#" class="active" onclick="showPage('home',this)">Naslovna</a>
       <a href="#" onclick="showPage('about',this)">O nama</a>
+      <a href="#" onclick="showPage('news',this)">Obaveštenja</a>
       <a href="#" onclick="showPage('events',this)">Aktivnosti</a>
       <a href="#" onclick="showPage('services',this)">Usluge</a>
       <a href="#" onclick="showPage('contact',this)">Kontakt</a>
@@ -766,6 +767,17 @@
         <p>Horske sekcije, likovne radionice, predavanja i kulturno-umetničke priredbe.</p>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- ════════════════ NEWS ════════════════ -->
+<div id="page-news" class="page-section">
+  <div class="inner-header">
+    <h2>Vesti i obaveštenja</h2>
+    <p>Sva obaveštenja i vesti udruženja</p>
+  </div>
+  <div class="inner-content" style="max-width:800px">
+    <div class="news-list" id="newsPageList" aria-live="polite" aria-label="Sva obaveštenja"></div>
   </div>
 </div>
 
@@ -1105,6 +1117,7 @@ async function loadData() {
 // ─── PAGE TITLES ───
 const pageTitles = {
   home:     'Udruženje Penzionera Mladenovac',
+  news:     'Obaveštenja — Udruženje Penzionera Mladenovac',
   about:    'O udruženju — Udruženje Penzionera Mladenovac',
   events:   'Aktivnosti i događaji — Udruženje Penzionera Mladenovac',
   services: 'Usluge — Udruženje Penzionera Mladenovac',
@@ -1123,6 +1136,7 @@ function showPage(id, linkEl) {
   document.title = pageTitles[id] || pageTitles.home;
   closeNav();
   if (id === 'home') { renderNews(); renderCalendar(); renderUpcoming(); renderFeatured(); }
+  if (id === 'news') renderNewsPage();
   if (id === 'events') renderEventsPage();
   if (id === 'admin') { renderAdminNews(); renderAdminEvents(); }
 }
@@ -1194,6 +1208,22 @@ function renderNews() {
   const sorted = [...newsItems].sort((a,b) => parseDate(b.date) - parseDate(a.date));
   const el = document.getElementById('newsList');
   el.innerHTML = sorted.slice(0,5).map(n => `
+    <div class="news-card ${n.featured ? 'featured' : ''}">
+      <div class="news-card-badge"></div>
+      <div class="news-card-body">
+        <div class="news-card-date">${escapeHTML(formatDate(n.date))} · ${escapeHTML(n.cat)}</div>
+        <div class="news-card-title">${escapeHTML(n.title)}</div>
+        <p>${escapeHTML(n.desc)}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderNewsPage() {
+  const sorted = [...newsItems].sort((a,b) => parseDate(b.date) - parseDate(a.date));
+  const el = document.getElementById('newsPageList');
+  if (!sorted.length) { el.innerHTML = '<p style="color:var(--text-muted)">Nema obaveštenja.</p>'; return; }
+  el.innerHTML = sorted.map(n => `
     <div class="news-card ${n.featured ? 'featured' : ''}">
       <div class="news-card-badge"></div>
       <div class="news-card-body">
