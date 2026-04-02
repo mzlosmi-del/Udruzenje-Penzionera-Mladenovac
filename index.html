@@ -940,7 +940,6 @@
     <div class="admin-tabs" role="tablist">
       <button class="admin-tab active" role="tab" aria-selected="true" aria-controls="admin-news" onclick="switchAdminTab('news', this)"><span aria-hidden="true">📰</span> Vesti i obaveštenja</button>
       <button class="admin-tab" role="tab" aria-selected="false" aria-controls="admin-events" onclick="switchAdminTab('events', this)"><span aria-hidden="true">📅</span> Aktivnosti i događaji</button>
-      <button class="admin-tab" role="tab" aria-selected="false" aria-controls="admin-featured" onclick="switchAdminTab('featured', this)"><span aria-hidden="true">⭐</span> Istaknuto obaveštenje</button>
     </div>
 
     <!-- News panel -->
@@ -1015,26 +1014,6 @@
       <div class="admin-list" id="adminEventsList" aria-live="polite"></div>
     </div>
 
-    <!-- Featured panel -->
-    <div id="admin-featured" class="admin-panel" role="tabpanel">
-      <div class="admin-form">
-        <h3>Istaknuto obaveštenje na naslovnoj strani</h3>
-        <p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;">Ovo obaveštenje se prikazuje prominentno na vrhu naslovne strane. Koristite ga za važna saopštenja.</p>
-        <div class="form-group">
-          <label for="featTitle">Naslov</label>
-          <input type="text" id="featTitle" placeholder="Naslov istaknutog obaveštenja">
-        </div>
-        <div class="form-group">
-          <label for="featDesc">Tekst obaveštenja</label>
-          <textarea id="featDesc" placeholder="Sadržaj obaveštenja..."></textarea>
-        </div>
-        <div style="display:flex;gap:12px;align-items:center;">
-          <button class="btn-primary" onclick="saveFeatured()">Sačuvaj istaknuto</button>
-          <button class="btn-secondary" onclick="clearFeatured()">Ukloni sa naslovne</button>
-        </div>
-        <div class="admin-notice" id="featNotice" role="status" style="margin-top:14px;">✓ Istaknuto obaveštenje ažurirano!</div>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -1110,20 +1089,16 @@ let calMonth = today.getMonth();
 
 let newsItems = [];
 let events    = [];
-let featured  = { id: 1, title: "", desc: "", active: false };
 
 async function loadData() {
-  const [newsRes, eventsRes, featuredRes] = await Promise.all([
+  const [newsRes, eventsRes] = await Promise.all([
     db.from('news').select('*').order('date', { ascending: false }),
     db.from('events').select('*').order('date', { ascending: true }),
-    db.from('featured_notice').select('*').eq('id', 1).maybeSingle()
   ]);
-  if (newsRes.error)     console.error('[loadData] news error:', newsRes.error);
-  if (eventsRes.error)   console.error('[loadData] events error:', eventsRes.error);
-  if (featuredRes.error) console.error('[loadData] featured error:', featuredRes.error);
-  if (newsRes.data)     newsItems = newsRes.data;
-  if (eventsRes.data)   events    = eventsRes.data;
-  if (featuredRes.data) featured  = featuredRes.data;
+  if (newsRes.error)   console.error('[loadData] news error:', newsRes.error);
+  if (eventsRes.error) console.error('[loadData] events error:', eventsRes.error);
+  if (newsRes.data)    newsItems = newsRes.data;
+  if (eventsRes.data)  events    = eventsRes.data;
   console.log('[loadData] news:', newsItems.length, 'events:', events.length);
 }
 
@@ -1148,7 +1123,7 @@ function showPage(id, linkEl) {
   closeNav();
   if (id === 'home') { renderNews(); renderCalendar(); renderUpcoming(); renderFeatured(); }
   if (id === 'events') renderEventsPage();
-  if (id === 'admin') { renderAdminNews(); renderAdminEvents(); renderAdminFeatured(); }
+  if (id === 'admin') { renderAdminNews(); renderAdminEvents(); }
 }
 
 // ─── HAMBURGER ───
@@ -1235,10 +1210,6 @@ function renderFeatured() {
   if (f) {
     document.getElementById('featuredTitle').textContent = f.title;
     document.getElementById('featuredDesc').textContent = f.desc;
-    banner.style.display = 'flex';
-  } else if (featured.active) {
-    document.getElementById('featuredTitle').textContent = featured.title;
-    document.getElementById('featuredDesc').textContent = featured.desc;
     banner.style.display = 'flex';
   } else {
     banner.style.display = 'none';
@@ -1466,31 +1437,6 @@ async function deleteEvent(id) {
   renderUpcoming();
 }
 
-// ─── ADMIN: FEATURED ───
-function renderAdminFeatured() {
-  document.getElementById('featTitle').value = featured.title || '';
-  document.getElementById('featDesc').value  = featured.desc  || '';
-}
-
-async function saveFeatured() {
-  featured.title  = document.getElementById('featTitle').value.trim();
-  featured.desc   = document.getElementById('featDesc').value.trim();
-  featured.active = !!(featured.title);
-  const { error } = await db.from('featured_notice').upsert({ id: 1, title: featured.title, desc: featured.desc, active: featured.active });
-  if (error) { alert('Greška pri čuvanju.'); return; }
-  showNotice('featNotice');
-}
-
-async function clearFeatured() {
-  featured.title  = '';
-  featured.desc   = '';
-  featured.active = false;
-  document.getElementById('featTitle').value = '';
-  document.getElementById('featDesc').value  = '';
-  const { error } = await db.from('featured_notice').upsert({ id: 1, title: '', desc: '', active: false });
-  if (error) { alert('Greška pri brisanju.'); return; }
-  showNotice('featNotice');
-}
 
 // ─── ADMIN TABS ───
 function switchAdminTab(tab, el) {
