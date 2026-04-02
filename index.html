@@ -544,6 +544,20 @@
   }
   .admin-notice.show { display: block; }
 
+  /* ─── PAGINATION ─── */
+  .pagination {
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border);
+  }
+  .pagination button {
+    padding: 9px 20px; border: 1px solid var(--border); border-radius: 6px;
+    background: white; font-family: inherit; font-size: 14px; cursor: pointer;
+    color: var(--navy); font-weight: 600; transition: all 0.2s;
+  }
+  .pagination button:hover:not(:disabled) { background: var(--navy); color: white; border-color: var(--navy); }
+  .pagination button:disabled { opacity: 0.35; cursor: default; }
+  .pagination-info { font-size: 14px; color: var(--text-muted); }
+
   /* ─── FOOTER ─── */
   footer { background: var(--navy); color: rgba(255,255,255,0.7); padding: 50px 40px 28px; margin-top: 80px; }
   .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); }
@@ -1111,6 +1125,9 @@ let calMonth = today.getMonth();
 
 let newsItems = [];
 let events    = [];
+const PAGE_SIZE = 25;
+let newsPage   = 0;
+let eventsPage = 0;
 
 async function loadData() {
   const [newsRes, eventsRes] = await Promise.all([
@@ -1146,8 +1163,8 @@ function showPage(id, linkEl) {
   document.title = pageTitles[id] || pageTitles.home;
   closeNav();
   if (id === 'home') { renderNews(); renderCalendar(); renderUpcoming(); renderFeatured(); }
-  if (id === 'news') renderNewsPage();
-  if (id === 'events') renderEventsPage();
+  if (id === 'news') { newsPage = 0; renderNewsPage(); }
+  if (id === 'events') { eventsPage = 0; renderEventsPage(); }
   if (id === 'admin') { renderAdminNews(); renderAdminEvents(); }
 }
 
@@ -1233,7 +1250,10 @@ function renderNewsPage() {
   const sorted = [...newsItems].sort((a,b) => parseDate(b.date) - parseDate(a.date));
   const el = document.getElementById('newsPageList');
   if (!sorted.length) { el.innerHTML = '<p style="color:var(--text-muted)">Nema obaveštenja.</p>'; return; }
-  el.innerHTML = sorted.map(n => `
+  const totalPages = Math.ceil(sorted.length / PAGE_SIZE);
+  newsPage = Math.max(0, Math.min(newsPage, totalPages - 1));
+  const page = sorted.slice(newsPage * PAGE_SIZE, (newsPage + 1) * PAGE_SIZE);
+  el.innerHTML = page.map(n => `
     <div class="news-card ${n.featured ? 'featured' : ''}">
       <div class="news-card-badge"></div>
       <div class="news-card-body">
@@ -1243,6 +1263,12 @@ function renderNewsPage() {
       </div>
     </div>
   `).join('');
+  if (totalPages > 1) el.innerHTML += `
+    <div class="pagination">
+      <button onclick="newsPage--;renderNewsPage()" ${newsPage === 0 ? 'disabled' : ''}>← Prethodna</button>
+      <span class="pagination-info">Strana ${newsPage + 1} od ${totalPages}</span>
+      <button onclick="newsPage++;renderNewsPage()" ${newsPage >= totalPages - 1 ? 'disabled' : ''}>Sledeća →</button>
+    </div>`;
 }
 
 function renderFeatured() {
@@ -1336,7 +1362,11 @@ function renderEventsPage() {
   const now = new Date(); now.setHours(0,0,0,0);
   const sorted = [...events].sort((a,b) => parseDate(a.date) - parseDate(b.date));
   const el = document.getElementById('eventsPageList');
-  el.innerHTML = sorted.map(e => {
+  if (!sorted.length) { el.innerHTML = '<p style="color:var(--text-muted)">Nema unetih aktivnosti.</p>'; return; }
+  const totalPages = Math.ceil(sorted.length / PAGE_SIZE);
+  eventsPage = Math.max(0, Math.min(eventsPage, totalPages - 1));
+  const page = sorted.slice(eventsPage * PAGE_SIZE, (eventsPage + 1) * PAGE_SIZE);
+  el.innerHTML = page.map(e => {
     const d = parseDate(e.date);
     const isPast = d < now;
     const statusText = isPast ? 'Završeno' : 'Predstojeće';
@@ -1360,6 +1390,12 @@ function renderEventsPage() {
       </div>
     `;
   }).join('');
+  if (totalPages > 1) el.innerHTML += `
+    <div class="pagination">
+      <button onclick="eventsPage--;renderEventsPage()" ${eventsPage === 0 ? 'disabled' : ''}>← Prethodna</button>
+      <span class="pagination-info">Strana ${eventsPage + 1} od ${totalPages}</span>
+      <button onclick="eventsPage++;renderEventsPage()" ${eventsPage >= totalPages - 1 ? 'disabled' : ''}>Sledeća →</button>
+    </div>`;
 }
 
 // ─── ADMIN: NEWS ───
