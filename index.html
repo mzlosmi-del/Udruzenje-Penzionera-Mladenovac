@@ -1268,7 +1268,7 @@ function renderNewsPage() {
   if (totalPages > 1) el.innerHTML += `
     <div class="pagination">
       <button onclick="newsPage--;renderNewsPage()" ${newsPage === 0 ? 'disabled' : ''}>← Prethodna</button>
-      <span class="pagination-info">Strana ${newsPage + 1} od ${totalPages}</span>
+      <span class="pagination-info">Prikazano ${newsPage * PAGE_SIZE + 1}–${Math.min((newsPage + 1) * PAGE_SIZE, sorted.length)} od ${sorted.length}</span>
       <button onclick="newsPage++;renderNewsPage()" ${newsPage >= totalPages - 1 ? 'disabled' : ''}>Sledeća →</button>
     </div>`;
 }
@@ -1395,7 +1395,7 @@ function renderEventsPage() {
   if (totalPages > 1) el.innerHTML += `
     <div class="pagination">
       <button onclick="eventsPage--;renderEventsPage()" ${eventsPage === 0 ? 'disabled' : ''}>← Prethodna</button>
-      <span class="pagination-info">Strana ${eventsPage + 1} od ${totalPages}</span>
+      <span class="pagination-info">Prikazano ${eventsPage * PAGE_SIZE + 1}–${Math.min((eventsPage + 1) * PAGE_SIZE, sorted.length)} od ${sorted.length}</span>
       <button onclick="eventsPage++;renderEventsPage()" ${eventsPage >= totalPages - 1 ? 'disabled' : ''}>Sledeća →</button>
     </div>`;
 }
@@ -1449,7 +1449,7 @@ function renderAdminNews() {
   if (totalPages > 1) el.innerHTML += `
     <div class="pagination">
       <button onclick="adminNewsPage--;renderAdminNews()" ${adminNewsPage === 0 ? 'disabled' : ''}>← Prethodna</button>
-      <span class="pagination-info">Strana ${adminNewsPage + 1} od ${totalPages}</span>
+      <span class="pagination-info">Prikazano ${adminNewsPage * PAGE_SIZE + 1}–${Math.min((adminNewsPage + 1) * PAGE_SIZE, newsItems.length)} od ${newsItems.length}</span>
       <button onclick="adminNewsPage++;renderAdminNews()" ${adminNewsPage >= totalPages - 1 ? 'disabled' : ''}>Sledeća →</button>
     </div>`;
 }
@@ -1519,7 +1519,7 @@ function renderAdminEvents() {
   if (totalPages > 1) el.innerHTML += `
     <div class="pagination">
       <button onclick="adminEventsPage--;renderAdminEvents()" ${adminEventsPage === 0 ? 'disabled' : ''}>← Prethodna</button>
-      <span class="pagination-info">Strana ${adminEventsPage + 1} od ${totalPages}</span>
+      <span class="pagination-info">Prikazano ${adminEventsPage * PAGE_SIZE + 1}–${Math.min((adminEventsPage + 1) * PAGE_SIZE, sorted.length)} od ${sorted.length}</span>
       <button onclick="adminEventsPage++;renderAdminEvents()" ${adminEventsPage >= totalPages - 1 ? 'disabled' : ''}>Sledeća →</button>
     </div>`;
 }
