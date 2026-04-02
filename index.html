@@ -1119,6 +1119,7 @@ function showPage(id, linkEl) {
   document.querySelectorAll('nav a:not(.admin-btn)').forEach(a => a.classList.remove('active'));
   if (linkEl) linkEl.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  history.replaceState(null, '', '#' + id);
   document.title = pageTitles[id] || pageTitles.home;
   closeNav();
   if (id === 'home') { renderNews(); renderCalendar(); renderUpcoming(); renderFeatured(); }
@@ -1476,10 +1477,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (nd) nd.value = td;
   if (ed) ed.value = td;
   await loadData();
-  renderNews();
-  renderCalendar();
-  renderUpcoming();
-  renderFeatured();
+  const validPages = Object.keys(pageTitles);
+  const hash = window.location.hash.slice(1);
+  const startPage = validPages.includes(hash) ? hash : 'home';
+  if (startPage !== 'home') {
+    const navLink = document.querySelector(`nav a[onclick*="'${startPage}'"]`);
+    showPage(startPage, navLink);
+  } else {
+    renderNews();
+    renderCalendar();
+    renderUpcoming();
+    renderFeatured();
+  }
 });
 </script>
 </body>
