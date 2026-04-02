@@ -1,9 +1,37 @@
 <!DOCTYPE html>
-<html lang="sr">
+<html lang="sr-Latn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Udruženje penzionera Mladenovac — neprofitna organizacija koja od 1970. zastupa interese i brine o aktivnom životu penzionera opštine Mladenovac. Kontakt: +381 11 123-456.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Udruženje Penzionera Mladenovac">
+<meta property="og:description" content="Neprofitna organizacija koja od 1970. zastupa interese i brine o aktivnom životu penzionera opštine Mladenovac.">
+<meta property="og:locale" content="sr_RS">
+<link rel="canonical" href="https://up-mladenovac.rs/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤝</text></svg>">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline';">
 <title>Udruženje Penzionera Mladenovac</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Udruženje Penzionera Mladenovac",
+  "description": "Neprofitna nevladina organizacija koja zastupa interese penzionera na teritoriji opštine Mladenovac, osnovana 1970. godine.",
+  "foundingDate": "1970",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Ul. Kosmajska 12",
+    "postalCode": "11400",
+    "addressLocality": "Mladenovac",
+    "addressCountry": "RS"
+  },
+  "telephone": "+381-11-123-456",
+  "email": "kontakt@up-mladenovac.rs",
+  "openingHours": "Mo-Fr 09:00-16:00"
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -31,6 +59,29 @@
     line-height: 1.65;
   }
 
+  /* ─── SCREEN READER ONLY ─── */
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0;
+    margin: -1px; overflow: hidden; clip: rect(0,0,0,0);
+    white-space: nowrap; border: 0;
+  }
+
+  /* ─── SKIP LINK ─── */
+  .skip-link {
+    position: absolute; top: -100%; left: 0;
+    background: var(--navy); color: white;
+    padding: 10px 18px; font-size: 14px;
+    z-index: 9999; border-radius: 0 0 6px 0;
+    text-decoration: none;
+  }
+  .skip-link:focus { top: 0; }
+
+  /* ─── GLOBAL FOCUS ─── */
+  :focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+  }
+
   /* ─── HEADER ─── */
   header {
     background: var(--navy);
@@ -42,7 +93,7 @@
     background: var(--navy-light);
     padding: 6px 40px;
     display: flex; align-items: center; justify-content: space-between;
-    font-size: 13px; color: rgba(255,255,255,0.65);
+    font-size: 13px; color: rgba(255,255,255,0.7);
     border-bottom: 1px solid rgba(255,255,255,0.1);
   }
 
@@ -67,7 +118,7 @@
 
   .logo-text { color: white; }
   .logo-text .title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; line-height: 1.2; }
-  .logo-text .sub { font-size: 13px; color: rgba(255,255,255,0.6); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+  .logo-text .sub { font-size: 13px; color: rgba(255,255,255,0.65); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
 
   nav { display: flex; align-items: center; gap: 4px; }
   nav a {
@@ -93,6 +144,21 @@
     transition: all 0.2s !important;
   }
   .admin-btn:hover { background: var(--gold-light) !important; }
+
+  /* ─── HAMBURGER ─── */
+  .hamburger {
+    display: none;
+    background: none;
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 6px;
+    padding: 8px 12px;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    line-height: 1;
+    transition: background 0.2s;
+  }
+  .hamburger:hover { background: rgba(255,255,255,0.1); }
 
   /* ─── SECTIONS ─── */
   .page-section { display: none; }
@@ -124,7 +190,7 @@
 
   .hero-left h1 span { color: var(--gold-light); display: block; }
 
-  .hero-left p { color: rgba(255,255,255,0.75); font-size: 17px; margin-bottom: 32px; max-width: 460px; }
+  .hero-left p { color: rgba(255,255,255,0.8); font-size: 17px; margin-bottom: 32px; max-width: 460px; }
 
   .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
 
@@ -151,7 +217,7 @@
     text-decoration: none;
     font-weight: 600;
     font-size: 15px;
-    border: 2px solid rgba(255,255,255,0.4);
+    border: 2px solid rgba(255,255,255,0.5);
     cursor: pointer;
     transition: all 0.2s;
     display: inline-block;
@@ -173,7 +239,7 @@
 
   .stat { text-align: center; }
   .stat-num { font-family: 'Playfair Display', serif; font-size: 36px; color: white; font-weight: 700; }
-  .stat-label { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 4px; }
+  .stat-label { font-size: 13px; color: rgba(255,255,255,0.75); margin-top: 4px; }
 
   /* ─── CONTENT LAYOUT ─── */
   .content-wrap { max-width: 1100px; margin: 0 auto; padding: 60px 40px; }
@@ -253,8 +319,8 @@
   }
   .cal-header button {
     background: none; border: 1px solid var(--border);
-    width: 28px; height: 28px; border-radius: 50%;
-    cursor: pointer; font-size: 14px; color: var(--text-muted);
+    width: 44px; height: 44px; border-radius: 50%;
+    cursor: pointer; font-size: 16px; color: var(--text-muted);
     transition: all 0.2s;
     display: flex; align-items: center; justify-content: center;
   }
@@ -322,8 +388,8 @@
     transition: all 0.2s;
     cursor: pointer;
   }
-  .info-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.10); transform: translateY(-3px); border-color: var(--gold); }
-
+  .info-card:hover,
+  .info-card:focus-visible { box-shadow: 0 8px 28px rgba(0,0,0,0.10); transform: translateY(-3px); border-color: var(--gold); outline: 3px solid var(--gold); outline-offset: 2px; }
   .info-card .icon { font-size: 36px; margin-bottom: 14px; }
   .info-card h3 { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--navy); margin-bottom: 8px; }
   .info-card p { font-size: 14px; color: var(--text-muted); }
@@ -342,11 +408,12 @@
     content: '★';
     position: absolute; right: 30px; top: 50%; transform: translateY(-50%);
     font-size: 80px; opacity: 0.07; color: var(--gold);
+    pointer-events: none;
   }
 
   .featured-banner .label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px; }
   .featured-banner h2 { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 8px; }
-  .featured-banner p { font-size: 14px; color: rgba(255,255,255,0.75); }
+  .featured-banner p { font-size: 14px; color: rgba(255,255,255,0.8); }
 
   /* ─── INNER PAGES ─── */
   .inner-header {
@@ -354,8 +421,8 @@
     padding: 50px 40px;
     text-align: center;
   }
-  .inner-header h1 { font-family: 'Playfair Display', serif; font-size: 38px; color: white; margin-bottom: 10px; }
-  .inner-header p { color: rgba(255,255,255,0.65); font-size: 16px; }
+  .inner-header h2 { font-family: 'Playfair Display', serif; font-size: 38px; color: white; margin-bottom: 10px; }
+  .inner-header p { color: rgba(255,255,255,0.7); font-size: 16px; }
 
   .inner-content { max-width: 900px; margin: 0 auto; padding: 60px 40px; }
 
@@ -404,18 +471,19 @@
   .contact-icon { font-size: 22px; flex-shrink: 0; width: 44px; height: 44px; background: var(--cream-dark); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
   .contact-info-item h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 4px; }
   .contact-info-item p { font-size: 16px; color: var(--navy); }
+  .contact-info-item a { color: var(--navy); text-decoration: none; }
+  .contact-info-item a:hover { text-decoration: underline; }
 
-  .contact-form { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 32px; }
   .form-group { margin-bottom: 18px; }
   .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
-  .form-group input, .form-group textarea {
+  .form-group input, .form-group textarea, .form-group select {
     width: 100%; padding: 11px 14px;
     border: 1px solid var(--border); border-radius: 6px;
     font-family: inherit; font-size: 15px; color: var(--text);
     background: var(--cream);
-    outline: none; transition: border-color 0.2s;
+    transition: border-color 0.2s;
   }
-  .form-group input:focus, .form-group textarea:focus { border-color: var(--navy); background: white; }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--navy); background: white; }
   .form-group textarea { height: 120px; resize: vertical; }
 
   /* ─── SERVICES ─── */
@@ -429,7 +497,7 @@
   .admin-wrap { max-width: 1000px; margin: 0 auto; padding: 40px; }
   .admin-header-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
   .admin-header-bar h2 { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--navy); }
-  .admin-tabs { display: flex; gap: 8px; margin-bottom: 28px; }
+  .admin-tabs { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
   .admin-tab {
     padding: 9px 20px; border-radius: 6px; border: 1px solid var(--border);
     cursor: pointer; font-family: inherit; font-size: 14px; background: white;
@@ -455,7 +523,7 @@
   .admin-item-text span { font-size: 13px; color: var(--text-muted); display: block; margin-top: 2px; }
   .admin-item-actions { display: flex; gap: 8px; }
   .btn-icon {
-    width: 32px; height: 32px; border: 1px solid var(--border); background: white;
+    width: 44px; height: 44px; border: 1px solid var(--border); background: white;
     border-radius: 6px; cursor: pointer; font-size: 16px;
     display: flex; align-items: center; justify-content: center;
     transition: all 0.2s;
@@ -463,7 +531,7 @@
   .btn-icon:hover { background: var(--cream-dark); }
   .btn-icon.del:hover { background: #fff0f0; border-color: #f0a0a0; }
   .featured-toggle {
-    width: 32px; height: 32px; border: 1px solid var(--border); background: white;
+    width: 44px; height: 44px; border: 1px solid var(--border); background: white;
     border-radius: 6px; cursor: pointer; font-size: 14px;
     display: flex; align-items: center; justify-content: center;
     transition: all 0.2s;
@@ -485,7 +553,7 @@
   .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
   .footer-col ul li a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 14px; transition: color 0.2s; }
   .footer-col ul li a:hover { color: white; }
-  .footer-bottom { max-width: 1100px; margin: 20px auto 0; display: flex; justify-content: space-between; font-size: 13px; color: rgba(255,255,255,0.4); }
+  .footer-bottom { max-width: 1100px; margin: 20px auto 0; display: flex; justify-content: space-between; font-size: 13px; color: rgba(255,255,255,0.45); flex-wrap: wrap; gap: 8px; }
 
   /* ─── LOGIN MODAL ─── */
   .modal-overlay {
@@ -493,70 +561,117 @@
     z-index: 1000; align-items: center; justify-content: center;
   }
   .modal-overlay.show { display: flex; }
-  .modal-box { background: white; border-radius: 10px; padding: 40px; width: 380px; max-width: 95vw; box-shadow: 0 20px 60px rgba(0,0,0,0.25); }
+  .modal-box {
+    background: white; border-radius: 10px; padding: 40px;
+    width: 380px; max-width: 95vw;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    position: relative;
+  }
   .modal-box h2 { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--navy); margin-bottom: 6px; }
-  .modal-box p { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
-  .modal-close { position: absolute; right: 0; top: 0; width: 32px; height: 32px; background: none; border: none; cursor: pointer; font-size: 20px; color: var(--text-muted); }
-  .modal-box-inner { position: relative; }
+  .modal-box > p { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
+  .modal-close {
+    position: absolute; right: 12px; top: 12px;
+    width: 36px; height: 36px;
+    background: none; border: 1px solid var(--border);
+    cursor: pointer; font-size: 18px; color: var(--text-muted);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .modal-close:hover { background: var(--cream-dark); }
   .login-error { background: #fff0f0; border: 1px solid #f0a0a0; border-radius: 6px; padding: 10px 14px; font-size: 14px; color: #c0392b; margin-bottom: 14px; display: none; }
   .login-error.show { display: block; }
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 900px) {
-    .hero-inner { grid-template-columns: 1fr; }
-    .hero-stats { display: none; }
+    .header-top { padding: 6px 20px; font-size: 12px; }
+    .header-main { padding: 14px 20px; }
+
+    .hamburger { display: flex; }
+
+    nav {
+      display: none;
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: var(--navy);
+      flex-direction: column;
+      padding: 12px 20px 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      gap: 4px;
+      z-index: 99;
+    }
+    nav.open { display: flex; }
+    nav a { padding: 12px 14px; font-size: 16px; }
+    .admin-btn { margin-left: 0; margin-top: 4px; }
+
+    .hero { padding: 50px 20px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 32px; }
+    .hero-stats { display: block; padding: 24px; }
+    .stat-grid { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .stat-num { font-size: 24px; }
+    .hero-left h1 { font-size: 32px; }
+
+    .content-wrap { padding: 40px 20px; }
     .two-col { grid-template-columns: 1fr; }
     .about-grid, .contact-grid, .board-grid, .services-grid, .info-cards, .form-row { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-    nav { display: none; }
-    .header-main { justify-content: center; }
-    .hero-left h1 { font-size: 32px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; padding-bottom: 40px; }
+    .inner-content { padding: 40px 20px; }
+    .inner-header { padding: 36px 20px; }
+    .inner-header h2 { font-size: 28px; }
+    .featured-banner { padding: 24px; flex-direction: column; gap: 16px; }
+    .admin-wrap { padding: 20px; }
+  }
+
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Pređi na sadržaj</a>
+
 <!-- LOGIN MODAL -->
-<div class="modal-overlay" id="loginModal">
+<div class="modal-overlay" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
   <div class="modal-box">
-    <div class="modal-box-inner">
-      <h2>Admin prijava</h2>
-      <p>Unesite lozinku za pristup administratorskom panelu.</p>
-      <div class="login-error" id="loginError">Pogrešna lozinka. Pokušajte ponovo.</div>
-      <div class="form-group">
-        <label>Lozinka</label>
-        <input type="password" id="loginPassword" placeholder="Unesite lozinku" onkeydown="if(event.key==='Enter')doLogin()">
-      </div>
-      <div style="display:flex;gap:12px;margin-top:8px;">
-        <button class="btn-primary" onclick="doLogin()" style="flex:1">Prijavi se</button>
-        <button class="btn-secondary" onclick="closeModal()" style="flex:1">Otkaži</button>
-      </div>
-      <p style="font-size:12px;color:var(--text-muted);margin-top:14px;text-align:center;">Demo lozinka: <strong>admin123</strong></p>
+    <button class="modal-close" onclick="closeModal()" aria-label="Zatvori modal">✕</button>
+    <h2 id="loginModalTitle">Admin prijava</h2>
+    <p>Unesite lozinku za pristup administratorskom panelu.</p>
+    <div class="login-error" id="loginError" role="alert">Pogrešna lozinka. Pokušajte ponovo.</div>
+    <div class="form-group">
+      <label for="loginPassword">Lozinka</label>
+      <input type="password" id="loginPassword" placeholder="Unesite lozinku" onkeydown="if(event.key==='Enter')doLogin()">
     </div>
+    <div style="display:flex;gap:12px;margin-top:8px;">
+      <button class="btn-primary" onclick="doLogin()" style="flex:1">Prijavi se</button>
+      <button class="btn-secondary" onclick="closeModal()" style="flex:1">Otkaži</button>
+    </div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:14px;text-align:center;">Demo lozinka: <strong>admin123</strong></p>
   </div>
 </div>
 
 <!-- HEADER -->
 <header>
   <div class="header-top">
-    <span>📞 +381 11 123-456 &nbsp;|&nbsp; ✉ kontakt@up-mladenovac.rs</span>
+    <span><span aria-hidden="true">📞</span> +381 11 123-456 &nbsp;|&nbsp; <span aria-hidden="true">✉</span> kontakt@up-mladenovac.rs</span>
     <span>Radno vreme: Pon–Pet 9:00–16:00</span>
   </div>
   <div class="header-main">
     <div class="logo-area">
-      <div class="logo-icon">🤝</div>
+      <div class="logo-icon" aria-hidden="true">🤝</div>
       <div class="logo-text">
         <div class="title">Udruženje Penzionera Mladenovac</div>
         <div class="sub">Opštinska organizacija · Osnov. 1970.</div>
       </div>
     </div>
-    <nav>
+    <button class="hamburger" onclick="toggleNav()" aria-expanded="false" aria-controls="mainNav" aria-label="Otvori meni">☰</button>
+    <nav id="mainNav" aria-label="Glavna navigacija">
       <a href="#" class="active" onclick="showPage('home',this)">Naslovna</a>
       <a href="#" onclick="showPage('about',this)">O nama</a>
       <a href="#" onclick="showPage('events',this)">Aktivnosti</a>
       <a href="#" onclick="showPage('services',this)">Usluge</a>
       <a href="#" onclick="showPage('contact',this)">Kontakt</a>
-      <a href="#" class="admin-btn" onclick="openAdminOrLogin(event)">⚙ Admin</a>
+      <a href="#" class="admin-btn" onclick="openAdminOrLogin(event)"><span aria-hidden="true">⚙</span> Admin</a>
     </nav>
   </div>
 </header>
@@ -567,7 +682,7 @@
   <div class="hero">
     <div class="hero-inner">
       <div class="hero-left">
-        <div class="section-label">Dobrodošli</div>
+        <div class="section-label" aria-hidden="true">Dobrodošli</div>
         <h1>Udruženje Penzionera <span>Mladenovac</span></h1>
         <p>Ovde se susrećemo, pomažemo jedni drugima i zajednički gradimo lepšu svakodnevicu za penzionere naše opštine.</p>
         <div class="hero-btns">
@@ -575,7 +690,7 @@
           <button class="btn-secondary" onclick="showPage('about', document.querySelector('nav a:nth-child(2)'))">Saznajte više</button>
         </div>
       </div>
-      <div class="hero-stats">
+      <div class="hero-stats" aria-label="Statistike udruženja">
         <h3>Naše udruženje u brojevima</h3>
         <div class="stat-grid">
           <div class="stat"><div class="stat-num">1.800+</div><div class="stat-label">Članova</div></div>
@@ -587,11 +702,11 @@
     </div>
   </div>
 
-  <div class="content-wrap">
+  <div class="content-wrap" id="main-content">
     <!-- Featured banner -->
-    <div id="featuredBanner" class="featured-banner" style="display:none">
+    <div id="featuredBanner" class="featured-banner" style="display:none" role="region" aria-label="Istaknuto obaveštenje">
       <div>
-        <div class="label">Istaknuto obaveštenje</div>
+        <div class="label" aria-hidden="true">Istaknuto obaveštenje</div>
         <h2 id="featuredTitle"></h2>
         <p id="featuredDesc"></p>
       </div>
@@ -599,9 +714,9 @@
 
     <div class="two-col">
       <div>
-        <div class="section-label">Vesti i obaveštenja</div>
+        <div class="section-label" aria-hidden="true">Vesti i obaveštenja</div>
         <h2 class="section-title">Najnovije informacije</h2>
-        <div class="news-list" id="newsList">
+        <div class="news-list" id="newsList" aria-live="polite" aria-label="Lista vesti">
           <!-- filled by JS -->
         </div>
       </div>
@@ -609,35 +724,44 @@
       <div class="sidebar">
         <!-- Calendar -->
         <div class="sidebar-card">
-          <div class="sidebar-card-header">📅 Kalendar aktivnosti</div>
+          <div class="sidebar-card-header" aria-hidden="true"><span aria-hidden="true">📅</span> Kalendar aktivnosti</div>
           <div class="sidebar-card-body">
-            <div class="calendar" id="miniCal"></div>
+            <div class="calendar" id="miniCal" role="region" aria-label="Kalendar aktivnosti"></div>
           </div>
         </div>
         <!-- Upcoming events -->
         <div class="sidebar-card">
-          <div class="sidebar-card-header">🔔 Predstojeće aktivnosti</div>
+          <div class="sidebar-card-header"><span aria-hidden="true">🔔</span> Predstojeće aktivnosti</div>
           <div class="sidebar-card-body">
-            <div class="upcoming-events" id="upcomingEvents"></div>
+            <div class="upcoming-events" id="upcomingEvents" aria-live="polite" aria-label="Predstojeće aktivnosti"></div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Info cards -->
-    <div class="info-cards">
-      <div class="info-card" onclick="showPage('services', document.querySelector('nav a:nth-child(4)'))">
-        <div class="icon">🏥</div>
+    <div class="info-cards" role="list">
+      <div class="info-card" role="button" tabindex="0"
+           onclick="showPage('services', document.querySelector('nav a:nth-child(4)'))"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showPage('services', document.querySelector('nav a:nth-child(4)'))}"
+           aria-label="Zdravstvene usluge — pogledajte više">
+        <div class="icon" aria-hidden="true">🏥</div>
         <h3>Zdravstvene usluge</h3>
         <p>Organizovanje preventivnih pregleda i savetovališta za članove udruženja.</p>
       </div>
-      <div class="info-card" onclick="showPage('services', document.querySelector('nav a:nth-child(4)'))">
-        <div class="icon">✈️</div>
+      <div class="info-card" role="button" tabindex="0"
+           onclick="showPage('services', document.querySelector('nav a:nth-child(4)'))"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showPage('services', document.querySelector('nav a:nth-child(4)'))}"
+           aria-label="Izleti i putovanja — pogledajte više">
+        <div class="icon" aria-hidden="true">✈️</div>
         <h3>Izleti i putovanja</h3>
         <p>Jednodnevni i višednevni izleti po povlašćenim cenama za naše članove.</p>
       </div>
-      <div class="info-card" onclick="showPage('services', document.querySelector('nav a:nth-child(4)'))">
-        <div class="icon">🎭</div>
+      <div class="info-card" role="button" tabindex="0"
+           onclick="showPage('services', document.querySelector('nav a:nth-child(4)'))"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showPage('services', document.querySelector('nav a:nth-child(4)'))}"
+           aria-label="Kulturne aktivnosti — pogledajte više">
+        <div class="icon" aria-hidden="true">🎭</div>
         <h3>Kulturne aktivnosti</h3>
         <p>Horske sekcije, likovne radionice, predavanja i kulturno-umetničke priredbe.</p>
       </div>
@@ -648,14 +772,14 @@
 <!-- ════════════════ ABOUT ════════════════ -->
 <div id="page-about" class="page-section">
   <div class="inner-header">
-    <h1>O udruženju</h1>
+    <h2>O udruženju</h2>
     <p>Saznajte više o našoj organizaciji, istorijatu i upravi</p>
   </div>
   <div class="inner-content">
     <div class="about-grid">
       <div class="about-text">
-        <div class="section-label">Naša misija</div>
-        <h2 class="section-title">Ko smo mi?</h2>
+        <div class="section-label" aria-hidden="true">Naša misija</div>
+        <h3 class="section-title">Ko smo mi?</h3>
         <p>Udruženje penzionera Mladenovac je neprofitna, nevladina organizacija koja zastupa interese penzionera na teritoriji opštine Mladenovac. Osnovana 1970. godine, naša organizacija je tokom decenija postala oslonac za hiljadama penzionera koji traže podršku, drugarstvo i aktivno provođenje slobodnog vremena.</p>
         <p>Naš cilj je osigurati dostojanstven i aktivan život za sve penzionere, kroz organizaciju različitih aktivnosti, pružanje socijalnih usluga i zagovaranje prava penzionera pred nadležnim organima.</p>
       </div>
@@ -674,36 +798,36 @@
       </div>
     </div>
 
-    <div class="section-label">Uprava</div>
-    <h2 class="section-title">Upravni odbor</h2>
+    <div class="section-label" aria-hidden="true">Uprava</div>
+    <h3 class="section-title">Upravni odbor</h3>
     <div class="board-grid">
       <div class="board-card">
-        <div class="avatar">👨</div>
+        <div class="avatar" aria-hidden="true">👨</div>
         <h4>Ime i Prezime</h4>
         <div class="role">Predsednik</div>
       </div>
       <div class="board-card">
-        <div class="avatar">👩</div>
+        <div class="avatar" aria-hidden="true">👩</div>
         <h4>Ime i Prezime</h4>
         <div class="role">Potpredsednik</div>
       </div>
       <div class="board-card">
-        <div class="avatar">👨</div>
+        <div class="avatar" aria-hidden="true">👨</div>
         <h4>Ime i Prezime</h4>
         <div class="role">Sekretar</div>
       </div>
       <div class="board-card">
-        <div class="avatar">👩</div>
+        <div class="avatar" aria-hidden="true">👩</div>
         <h4>Ime i Prezime</h4>
         <div class="role">Blagajnik</div>
       </div>
       <div class="board-card">
-        <div class="avatar">👨</div>
+        <div class="avatar" aria-hidden="true">👨</div>
         <h4>Ime i Prezime</h4>
         <div class="role">Član UO</div>
       </div>
       <div class="board-card">
-        <div class="avatar">👩</div>
+        <div class="avatar" aria-hidden="true">👩</div>
         <h4>Ime i Prezime</h4>
         <div class="role">Član UO</div>
       </div>
@@ -714,51 +838,51 @@
 <!-- ════════════════ EVENTS ════════════════ -->
 <div id="page-events" class="page-section">
   <div class="inner-header">
-    <h1>Aktivnosti i događaji</h1>
+    <h2>Aktivnosti i događaji</h2>
     <p>Raspored svih predstojecih i prošlih aktivnosti udruženja</p>
   </div>
   <div class="inner-content" style="max-width:1000px">
-    <div class="section-label">Kalendar</div>
-    <h2 class="section-title">Predstojeće aktivnosti</h2>
-    <div class="events-list" id="eventsPageList"></div>
+    <div class="section-label" aria-hidden="true">Kalendar</div>
+    <h3 class="section-title">Predstojeće aktivnosti</h3>
+    <div class="events-list" id="eventsPageList" aria-live="polite" aria-label="Lista događaja"></div>
   </div>
 </div>
 
 <!-- ════════════════ SERVICES ════════════════ -->
 <div id="page-services" class="page-section">
   <div class="inner-header">
-    <h1>Usluge</h1>
+    <h2>Usluge</h2>
     <p>Šta nudimo našim članovima</p>
   </div>
   <div class="inner-content">
     <div class="services-grid">
       <div class="service-card">
-        <div class="svc-icon">🏥</div>
+        <div class="svc-icon" aria-hidden="true">🏥</div>
         <h3>Zdravstvena zaštita</h3>
         <p>Organizujemo periodične preventivne preglede u saradnji sa Domom zdravlja Mladenovac, merenje pritiska, šećera i savetovališta.</p>
       </div>
       <div class="service-card">
-        <div class="svc-icon">✈️</div>
+        <div class="svc-icon" aria-hidden="true">✈️</div>
         <h3>Izleti i putovanja</h3>
         <p>Organizujemo jednodnevne izlete, rekreativna putovanja u banje i destinacije u Srbiji i inostranstvu po povlašćenim cenama.</p>
       </div>
       <div class="service-card">
-        <div class="svc-icon">🎭</div>
+        <div class="svc-icon" aria-hidden="true">🎭</div>
         <h3>Kulturne sekcije</h3>
         <p>Hor, likovna sekcija, folklorni ansambl, kulinarska sekcija i plesna grupa — nešto za svaki ukus.</p>
       </div>
       <div class="service-card">
-        <div class="svc-icon">⚖️</div>
+        <div class="svc-icon" aria-hidden="true">⚖️</div>
         <h3>Pravna pomoć</h3>
         <p>Pomoć u ostvarivanju penzionerskih prava, podnošenju žalbi i komunikaciji sa nadležnim institucijama.</p>
       </div>
       <div class="service-card">
-        <div class="svc-icon">💻</div>
+        <div class="svc-icon" aria-hidden="true">💻</div>
         <h3>Digitalna pismenost</h3>
         <p>Kursevi rada na računaru, pametnom telefonu i internetu. Pomoć pri korišćenju e-usluga državnih organa.</p>
       </div>
       <div class="service-card">
-        <div class="svc-icon">🤝</div>
+        <div class="svc-icon" aria-hidden="true">🤝</div>
         <h3>Socijalna podrška</h3>
         <p>Humanitarne akcije, posete usamljenim penzionerima i organizovanje solidarne pomoći ugroženim članovima.</p>
       </div>
@@ -769,61 +893,38 @@
 <!-- ════════════════ CONTACT ════════════════ -->
 <div id="page-contact" class="page-section">
   <div class="inner-header">
-    <h1>Kontakt</h1>
+    <h2>Kontakt</h2>
     <p>Slobodno nam se obratite sa svim pitanjima i sugestijama</p>
   </div>
   <div class="inner-content">
-    <div class="contact-grid">
+    <div class="section-label" aria-hidden="true">Naše informacije</div>
+    <h3 class="section-title">Kako nas pronaći</h3>
+    <div class="contact-info-item">
+      <div class="contact-icon" aria-hidden="true">📍</div>
       <div>
-        <div class="section-label">Naše informacije</div>
-        <h2 class="section-title">Kako nas pronaći</h2>
-        <div class="contact-info-item">
-          <div class="contact-icon">📍</div>
-          <div>
-            <h4>Adresa</h4>
-            <p>Ul. Kosmajska 12<br>11400 Mladenovac</p>
-          </div>
-        </div>
-        <div class="contact-info-item">
-          <div class="contact-icon">📞</div>
-          <div>
-            <h4>Telefon</h4>
-            <p>+381 11 123-456</p>
-          </div>
-        </div>
-        <div class="contact-info-item">
-          <div class="contact-icon">✉️</div>
-          <div>
-            <h4>E-mail</h4>
-            <p>kontakt@up-mladenovac.rs</p>
-          </div>
-        </div>
-        <div class="contact-info-item">
-          <div class="contact-icon">🕐</div>
-          <div>
-            <h4>Radno vreme</h4>
-            <p>Ponedeljak – Petak<br>9:00 – 16:00</p>
-          </div>
-        </div>
+        <h4>Adresa</h4>
+        <p>Ul. Kosmajska 12<br>11400 Mladenovac</p>
       </div>
+    </div>
+    <div class="contact-info-item">
+      <div class="contact-icon" aria-hidden="true">📞</div>
       <div>
-        <div class="contact-form">
-          <div class="section-label">Pišite nam</div>
-          <h3 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:22px;margin-bottom:20px;">Pošaljite poruku</h3>
-          <div class="form-group">
-            <label>Vaše ime</label>
-            <input type="text" placeholder="Ime i prezime">
-          </div>
-          <div class="form-group">
-            <label>E-mail adresa</label>
-            <input type="email" placeholder="vas@email.com">
-          </div>
-          <div class="form-group">
-            <label>Poruka</label>
-            <textarea placeholder="Vaša poruka..."></textarea>
-          </div>
-          <button class="btn-primary" style="width:100%" onclick="alert('Poruka poslata! Javićemo vam se uskoro.')">Pošalji poruku</button>
-        </div>
+        <h4>Telefon</h4>
+        <p><a href="tel:+38111123456">+381 11 123-456</a></p>
+      </div>
+    </div>
+    <div class="contact-info-item">
+      <div class="contact-icon" aria-hidden="true">✉️</div>
+      <div>
+        <h4>E-mail</h4>
+        <p><a href="mailto:kontakt@up-mladenovac.rs">kontakt@up-mladenovac.rs</a></p>
+      </div>
+    </div>
+    <div class="contact-info-item">
+      <div class="contact-icon" aria-hidden="true">🕐</div>
+      <div>
+        <h4>Radno vreme</h4>
+        <p>Ponedeljak – Petak<br>9:00 – 16:00</p>
       </div>
     </div>
   </div>
@@ -832,35 +933,35 @@
 <!-- ════════════════ ADMIN ════════════════ -->
 <div id="page-admin" class="page-section">
   <div class="inner-header">
-    <h1>⚙ Administratorski panel</h1>
+    <h2><span aria-hidden="true">⚙</span> Administratorski panel</h2>
     <p>Upravljajte sadržajem sajta — vesti, događaji i istaknuto obaveštenje</p>
   </div>
   <div class="admin-wrap">
-    <div class="admin-tabs">
-      <button class="admin-tab active" onclick="switchAdminTab('news', this)">📰 Vesti i obaveštenja</button>
-      <button class="admin-tab" onclick="switchAdminTab('events', this)">📅 Aktivnosti i događaji</button>
-      <button class="admin-tab" onclick="switchAdminTab('featured', this)">⭐ Istaknuto obaveštenje</button>
+    <div class="admin-tabs" role="tablist">
+      <button class="admin-tab active" role="tab" aria-selected="true" aria-controls="admin-news" onclick="switchAdminTab('news', this)"><span aria-hidden="true">📰</span> Vesti i obaveštenja</button>
+      <button class="admin-tab" role="tab" aria-selected="false" aria-controls="admin-events" onclick="switchAdminTab('events', this)"><span aria-hidden="true">📅</span> Aktivnosti i događaji</button>
+      <button class="admin-tab" role="tab" aria-selected="false" aria-controls="admin-featured" onclick="switchAdminTab('featured', this)"><span aria-hidden="true">⭐</span> Istaknuto obaveštenje</button>
     </div>
 
     <!-- News panel -->
-    <div id="admin-news" class="admin-panel active">
+    <div id="admin-news" class="admin-panel active" role="tabpanel">
       <div class="admin-form">
         <h3>Dodaj novu vest / obaveštenje</h3>
         <div class="form-group">
-          <label>Naslov</label>
+          <label for="newsTitle">Naslov</label>
           <input type="text" id="newsTitle" placeholder="Naslov vesti ili obaveštenja">
         </div>
         <div class="form-group">
-          <label>Kratki opis</label>
+          <label for="newsDesc">Kratki opis</label>
           <textarea id="newsDesc" placeholder="Kratak opis..."></textarea>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label>Datum</label>
+            <label for="newsDate">Datum</label>
             <input type="date" id="newsDate">
           </div>
           <div class="form-group">
-            <label>Kategorija</label>
+            <label for="newsCategory">Kategorija</label>
             <select id="newsCategory" style="width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:15px;background:var(--cream);">
               <option value="Obaveštenje">Obaveštenje</option>
               <option value="Vest">Vest</option>
@@ -870,68 +971,68 @@
         </div>
         <div style="display:flex;gap:12px;align-items:center;margin-top:4px;">
           <button class="btn-primary" onclick="addNews()">Dodaj vest</button>
-          <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;">
+          <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;text-transform:none;letter-spacing:0;font-weight:400;">
             <input type="checkbox" id="newsFeatured" style="width:16px;height:16px;">
             Prikaži kao istaknuto na naslovnoj
           </label>
         </div>
       </div>
-      <div class="admin-notice" id="newsNotice">✓ Vest uspešno sačuvana!</div>
+      <div class="admin-notice" id="newsNotice" role="status">✓ Vest uspešno sačuvana!</div>
       <h3 style="font-family:'Playfair Display',serif;color:var(--navy);margin-bottom:14px;">Sve vesti</h3>
-      <div class="admin-list" id="adminNewsList"></div>
+      <div class="admin-list" id="adminNewsList" aria-live="polite"></div>
     </div>
 
     <!-- Events panel -->
-    <div id="admin-events" class="admin-panel">
+    <div id="admin-events" class="admin-panel" role="tabpanel">
       <div class="admin-form">
         <h3>Dodaj novu aktivnost / događaj</h3>
         <div class="form-group">
-          <label>Naziv aktivnosti</label>
+          <label for="evtTitle">Naziv aktivnosti</label>
           <input type="text" id="evtTitle" placeholder="Naziv aktivnosti ili događaja">
         </div>
         <div class="form-group">
-          <label>Opis</label>
+          <label for="evtDesc">Opis</label>
           <textarea id="evtDesc" placeholder="Kratki opis aktivnosti..."></textarea>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label>Datum</label>
+            <label for="evtDate">Datum</label>
             <input type="date" id="evtDate">
           </div>
           <div class="form-group">
-            <label>Vreme</label>
+            <label for="evtTime">Vreme</label>
             <input type="time" id="evtTime" value="10:00">
           </div>
         </div>
         <div class="form-group">
-          <label>Lokacija</label>
+          <label for="evtLocation">Lokacija</label>
           <input type="text" id="evtLocation" placeholder="Npr. Dom kulture Mladenovac">
         </div>
         <button class="btn-primary" onclick="addEvent()">Dodaj aktivnost</button>
       </div>
-      <div class="admin-notice" id="evtNotice">✓ Aktivnost uspešno sačuvana!</div>
+      <div class="admin-notice" id="evtNotice" role="status">✓ Aktivnost uspešno sačuvana!</div>
       <h3 style="font-family:'Playfair Display',serif;color:var(--navy);margin-bottom:14px;">Sve aktivnosti</h3>
-      <div class="admin-list" id="adminEventsList"></div>
+      <div class="admin-list" id="adminEventsList" aria-live="polite"></div>
     </div>
 
     <!-- Featured panel -->
-    <div id="admin-featured" class="admin-panel">
+    <div id="admin-featured" class="admin-panel" role="tabpanel">
       <div class="admin-form">
         <h3>Istaknuto obaveštenje na naslovnoj strani</h3>
         <p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;">Ovo obaveštenje se prikazuje prominentno na vrhu naslovne strane. Koristite ga za važna saopštenja.</p>
         <div class="form-group">
-          <label>Naslov</label>
+          <label for="featTitle">Naslov</label>
           <input type="text" id="featTitle" placeholder="Naslov istaknutog obaveštenja">
         </div>
         <div class="form-group">
-          <label>Tekst obaveštenja</label>
+          <label for="featDesc">Tekst obaveštenja</label>
           <textarea id="featDesc" placeholder="Sadržaj obaveštenja..."></textarea>
         </div>
         <div style="display:flex;gap:12px;align-items:center;">
           <button class="btn-primary" onclick="saveFeatured()">Sačuvaj istaknuto</button>
           <button class="btn-secondary" onclick="clearFeatured()">Ukloni sa naslovne</button>
         </div>
-        <div class="admin-notice" id="featNotice" style="margin-top:14px;">✓ Istaknuto obaveštenje ažurirano!</div>
+        <div class="admin-notice" id="featNotice" role="status" style="margin-top:14px;">✓ Istaknuto obaveštenje ažurirano!</div>
       </div>
     </div>
   </div>
@@ -941,7 +1042,7 @@
 <footer>
   <div class="footer-grid">
     <div>
-      <div class="footer-logo">🤝 Udruženje Penzionera Mladenovac</div>
+      <div class="footer-logo"><span aria-hidden="true">🤝</span> Udruženje Penzionera Mladenovac</div>
       <p class="footer-desc">Organizacija koja od 1970. godine brine o dostojanstvenom i aktivnom životu penzionera opštine Mladenovac.</p>
     </div>
     <div class="footer-col">
@@ -957,29 +1058,44 @@
     <div class="footer-col">
       <h4>Korisni linkovi</h4>
       <ul>
-        <li><a href="https://www.minrzs.gov.rs/" target="_blank">Min. za rad i soc. pitanja</a></li>
-        <li><a href="https://www.pio.rs/" target="_blank">PIO Fond</a></li>
-        <li><a href="https://www.mladenovac.rs/" target="_blank">Opština Mladenovac</a></li>
-        <li><a href="#" target="_blank">Magazin Penzin</a></li>
+        <li><a href="https://www.minrzs.gov.rs/" target="_blank" rel="noopener noreferrer">Min. za rad i soc. pitanja</a></li>
+        <li><a href="https://www.pio.rs/" target="_blank" rel="noopener noreferrer">PIO Fond</a></li>
+        <li><a href="https://www.mladenovac.rs/" target="_blank" rel="noopener noreferrer">Opština Mladenovac</a></li>
+        <li><a href="#" rel="noopener noreferrer">Magazin Penzin</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Kontakt</h4>
       <ul>
-        <li><a href="#">📍 Ul. Kosmajska 12</a></li>
-        <li><a href="#">📞 +381 11 123-456</a></li>
-        <li><a href="#">✉ kontakt@up-mladenovac.rs</a></li>
-        <li><a href="#">🕐 Pon–Pet 9:00–16:00</a></li>
+        <li><span aria-hidden="true">📍</span> Ul. Kosmajska 12</li>
+        <li><a href="tel:+38111123456"><span aria-hidden="true">📞</span> +381 11 123-456</a></li>
+        <li><a href="mailto:kontakt@up-mladenovac.rs"><span aria-hidden="true">✉</span> kontakt@up-mladenovac.rs</a></li>
+        <li><span aria-hidden="true">🕐</span> Pon–Pet 9:00–16:00</li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <span>© 2026 Udruženje Penzionera Mladenovac. Sva prava zadržana.</span>
-    <span>Dizajniran sa ❤ za naše penzionere</span>
+    <span>Dizajniran sa <span aria-hidden="true">❤</span><span class="sr-only">ljubavlju</span> za naše penzionere</span>
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+// ─── XSS PROTECTION ───
+function escapeHTML(str) {
+  const div = document.createElement('div');
+  div.textContent = String(str == null ? '' : str);
+  return div.innerHTML;
+}
+
+// ─── SUPABASE ───
+const { createClient } = supabase;
+const db = createClient(
+  'https://xvkfryanlwmulecrapzy.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh2a2ZyeWFubHdtdWxlY3JhcHp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxMTY2NjMsImV4cCI6MjA5MDY5MjY2M30.BZjmW52PEHeJmi6DKclXC7MAaOxNlK6V7Vs53Mfkuh4'
+);
+
 // ─── STATE ───
 const ADMIN_PASS = "admin123";
 let isLoggedIn = false;
@@ -992,21 +1108,34 @@ const today = new Date();
 let calYear = today.getFullYear();
 let calMonth = today.getMonth();
 
-// Seed data
-let newsItems = [
-  { id: 1, title: "Redovna skupština udruženja", desc: "Obaveštavamo sve članove da će redovna godišnja skupština biti održana u Domu kulture.", date: "2026-04-10", cat: "Obaveštenje", featured: false },
-  { id: 2, title: "Uspešno okončana humanitarna akcija", desc: "Zahvaljujemo svim članovima koji su učestvovali u prikupljanju paketa za ugrožene penzionere.", date: "2026-03-28", cat: "Izveštaj", featured: false },
-  { id: 3, title: "Novi kurs digitalne pismenosti", desc: "Prijave za prolećni kurs rada na računaru i pametnom telefonu su u toku. Mesta su ograničena.", date: "2026-03-20", cat: "Vest", featured: true },
-];
+let newsItems = [];
+let events    = [];
+let featured  = { id: 1, title: "", desc: "", active: false };
 
-let events = [
-  { id: 1, title: "Proslava 1. maja – Dan rada", desc: "Svečana priredba i zajednički ručak za sve članove u prostorijama udruženja.", date: "2026-05-01", time: "11:00", location: "Prostor udruženja, ul. Kosmajska 12" },
-  { id: 2, title: "Jednodnevni izlet u Topolu", desc: "Poseta Crkvi Svetog Đorđa i Oplencu. Prevoz obezbeđen autobusom.", date: "2026-04-18", time: "08:00", location: "Polazak ispred Doma kulture" },
-  { id: 3, title: "Merenje krvnog pritiska i šećera", desc: "U saradnji sa Domom zdravlja, organizujemo besplatne preventivne preglede.", date: "2026-04-08", time: "09:00", location: "Dom zdravlja Mladenovac" },
-  { id: 4, title: "Redovna skupština udruženja", desc: "Godišnja skupština sa izveštajima o radu i planom za 2026. godinu.", date: "2026-04-10", time: "10:00", location: "Dom kulture Mladenovac" },
-];
+async function loadData() {
+  const [newsRes, eventsRes, featuredRes] = await Promise.all([
+    db.from('news').select('*').order('date', { ascending: false }),
+    db.from('events').select('*').order('date', { ascending: true }),
+    db.from('featured_notice').select('*').eq('id', 1).maybeSingle()
+  ]);
+  if (newsRes.error)     console.error('[loadData] news error:', newsRes.error);
+  if (eventsRes.error)   console.error('[loadData] events error:', eventsRes.error);
+  if (featuredRes.error) console.error('[loadData] featured error:', featuredRes.error);
+  if (newsRes.data)     newsItems = newsRes.data;
+  if (eventsRes.data)   events    = eventsRes.data;
+  if (featuredRes.data) featured  = featuredRes.data;
+  console.log('[loadData] news:', newsItems.length, 'events:', events.length);
+}
 
-let featured = { title: "", desc: "", active: false };
+// ─── PAGE TITLES ───
+const pageTitles = {
+  home:     'Udruženje Penzionera Mladenovac',
+  about:    'O udruženju — Udruženje Penzionera Mladenovac',
+  events:   'Aktivnosti i događaji — Udruženje Penzionera Mladenovac',
+  services: 'Usluge — Udruženje Penzionera Mladenovac',
+  contact:  'Kontakt — Udruženje Penzionera Mladenovac',
+  admin:    'Admin panel — Udruženje Penzionera Mladenovac',
+};
 
 // ─── NAVIGATION ───
 function showPage(id, linkEl) {
@@ -1015,10 +1144,37 @@ function showPage(id, linkEl) {
   document.querySelectorAll('nav a:not(.admin-btn)').forEach(a => a.classList.remove('active'));
   if (linkEl) linkEl.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.title = pageTitles[id] || pageTitles.home;
+  closeNav();
   if (id === 'home') { renderNews(); renderCalendar(); renderUpcoming(); renderFeatured(); }
   if (id === 'events') renderEventsPage();
-  if (id === 'admin') { renderAdminNews(); renderAdminEvents(); }
+  if (id === 'admin') { renderAdminNews(); renderAdminEvents(); renderAdminFeatured(); }
 }
+
+// ─── HAMBURGER ───
+function toggleNav() {
+  const nav = document.getElementById('mainNav');
+  const btn = document.querySelector('.hamburger');
+  const isOpen = nav.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  btn.setAttribute('aria-label', isOpen ? 'Zatvori meni' : 'Otvori meni');
+}
+
+function closeNav() {
+  const nav = document.getElementById('mainNav');
+  const btn = document.querySelector('.hamburger');
+  nav.classList.remove('open');
+  btn.setAttribute('aria-expanded', 'false');
+  btn.setAttribute('aria-label', 'Otvori meni');
+}
+
+document.addEventListener('click', function(e) {
+  const nav = document.getElementById('mainNav');
+  const btn = document.querySelector('.hamburger');
+  if (nav.classList.contains('open') && !nav.contains(e.target) && e.target !== btn) {
+    closeNav();
+  }
+});
 
 function openAdminOrLogin(e) {
   e.preventDefault();
@@ -1049,17 +1205,25 @@ function closeModal() {
   document.getElementById('loginError').classList.remove('show');
 }
 
+document.getElementById('loginModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+document.getElementById('loginModal').addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+
 // ─── RENDER NEWS ───
 function renderNews() {
-  const sorted = [...newsItems].sort((a,b) => new Date(b.date) - new Date(a.date));
+  const sorted = [...newsItems].sort((a,b) => parseDate(b.date) - parseDate(a.date));
   const el = document.getElementById('newsList');
   el.innerHTML = sorted.slice(0,5).map(n => `
-    <div class="news-card ${n.featured?'featured':''}">
+    <div class="news-card ${n.featured ? 'featured' : ''}">
       <div class="news-card-badge"></div>
       <div class="news-card-body">
-        <div class="news-card-date">${formatDate(n.date)} · ${n.cat}</div>
-        <div class="news-card-title">${n.title}</div>
-        <p>${n.desc}</p>
+        <div class="news-card-date">${escapeHTML(formatDate(n.date))} · ${escapeHTML(n.cat)}</div>
+        <div class="news-card-title">${escapeHTML(n.title)}</div>
+        <p>${escapeHTML(n.desc)}</p>
       </div>
     </div>
   `).join('');
@@ -1089,29 +1253,33 @@ function renderCalendar() {
   const startCol = firstDay === 0 ? 6 : firstDay - 1;
 
   const eventDays = new Set(events.map(e => {
-    const d = new Date(e.date);
+    const d = parseDate(e.date);
     if (d.getFullYear() === calYear && d.getMonth() === calMonth) return d.getDate();
     return null;
   }).filter(Boolean));
 
+  const prevMonthName = srMonths[calMonth === 0 ? 11 : calMonth - 1];
+  const nextMonthName = srMonths[calMonth === 11 ? 0 : calMonth + 1];
+
   let html = `
     <div class="cal-header">
-      <button onclick="prevMonth()">‹</button>
-      <div class="cal-month">${srMonths[calMonth]} ${calYear}</div>
-      <button onclick="nextMonth()">›</button>
+      <button onclick="prevMonth()" aria-label="Prethodni mesec (${prevMonthName})">‹</button>
+      <div class="cal-month" aria-live="polite" aria-atomic="true">${escapeHTML(srMonths[calMonth])} ${calYear}</div>
+      <button onclick="nextMonth()" aria-label="Sledeći mesec (${nextMonthName})">›</button>
     </div>
-    <div class="cal-grid">
-      ${srDays.map(d => `<div class="cal-day-name">${d}</div>`).join('')}
+    <div class="cal-grid" role="grid" aria-label="Kalendar ${srMonths[calMonth]} ${calYear}">
+      ${srDays.map(d => `<div class="cal-day-name" role="columnheader">${escapeHTML(d)}</div>`).join('')}
   `;
 
-  for (let i = 0; i < startCol; i++) html += `<div class="cal-day empty"></div>`;
+  for (let i = 0; i < startCol; i++) html += `<div class="cal-day empty" role="gridcell" aria-hidden="true"></div>`;
   for (let d = 1; d <= daysInMonth; d++) {
     const isToday = d === today.getDate() && calMonth === today.getMonth() && calYear === today.getFullYear();
     const hasEv = eventDays.has(d);
     let cls = 'cal-day';
     if (isToday) cls += ' today';
     if (hasEv) cls += ' has-event';
-    html += `<div class="${cls}">${d}</div>`;
+    const ariaLabel = `${d}. ${srMonths[calMonth]}${isToday ? ', danas' : ''}${hasEv ? ', ima aktivnosti' : ''}`;
+    html += `<div class="${cls}" role="gridcell" aria-label="${ariaLabel}"${isToday ? ' aria-current="date"' : ''}>${d}</div>`;
   }
   html += `</div>`;
   el.innerHTML = html;
@@ -1131,20 +1299,20 @@ function nextMonth() {
 // ─── RENDER UPCOMING ───
 function renderUpcoming() {
   const now = new Date(); now.setHours(0,0,0,0);
-  const upcoming = events.filter(e => new Date(e.date) >= now).sort((a,b) => new Date(a.date) - new Date(b.date)).slice(0,4);
+  const upcoming = events.filter(e => parseDate(e.date) >= now).sort((a,b) => parseDate(a.date) - parseDate(b.date)).slice(0,4);
   const el = document.getElementById('upcomingEvents');
   if (!upcoming.length) { el.innerHTML = '<p style="font-size:14px;color:var(--text-muted)">Nema predstojecih aktivnosti.</p>'; return; }
   el.innerHTML = upcoming.map(e => {
-    const d = new Date(e.date);
+    const d = parseDate(e.date);
     return `
       <div class="event-item">
-        <div class="event-date-badge">
+        <div class="event-date-badge" aria-hidden="true">
           <div class="day">${d.getDate()}</div>
-          <div class="mon">${srMonthsShort[d.getMonth()]}</div>
+          <div class="mon">${escapeHTML(srMonthsShort[d.getMonth()])}</div>
         </div>
         <div class="event-info">
-          <div class="event-title">${e.title}</div>
-          <div class="event-loc">📍 ${e.location}</div>
+          <div class="event-title">${escapeHTML(e.title)}</div>
+          <div class="event-loc"><span aria-hidden="true">📍</span> ${escapeHTML(e.location)}</div>
         </div>
       </div>
     `;
@@ -1154,25 +1322,27 @@ function renderUpcoming() {
 // ─── RENDER EVENTS PAGE ───
 function renderEventsPage() {
   const now = new Date(); now.setHours(0,0,0,0);
-  const sorted = [...events].sort((a,b) => new Date(a.date) - new Date(b.date));
+  const sorted = [...events].sort((a,b) => parseDate(a.date) - parseDate(b.date));
   const el = document.getElementById('eventsPageList');
   el.innerHTML = sorted.map(e => {
-    const d = new Date(e.date);
+    const d = parseDate(e.date);
     const isPast = d < now;
+    const statusText = isPast ? 'Završeno' : 'Predstojeće';
+    const statusColor = isPast ? '#c0392b' : '#27ae60';
     return `
-      <div class="event-card" style="${isPast?'opacity:0.65':''}">
-        <div class="big-date" style="${isPast?'background:var(--text-muted)':''}">
+      <div class="event-card" style="${isPast ? 'opacity:0.65' : ''}">
+        <div class="big-date" style="${isPast ? 'background:var(--text-muted)' : ''}" aria-hidden="true">
           <div class="dd">${d.getDate()}</div>
-          <div class="mm">${srMonthsShort[d.getMonth()]}</div>
+          <div class="mm">${escapeHTML(srMonthsShort[d.getMonth()])}</div>
           <div class="yy">${d.getFullYear()}</div>
         </div>
         <div class="event-card-body">
-          <h3>${e.title}</h3>
-          <p>${e.desc}</p>
+          <h3>${escapeHTML(e.title)}</h3>
+          <p>${escapeHTML(e.desc)}</p>
           <div class="event-meta">
-            <span>🕐 ${e.time}</span>
-            <span>📍 ${e.location}</span>
-            ${isPast ? '<span style="color:#c0392b;font-weight:600">Završeno</span>' : '<span style="color:#27ae60;font-weight:600">Predstojeće</span>'}
+            <span><span aria-hidden="true">🕐</span> <span class="sr-only">Vreme:</span>${escapeHTML(e.time)}</span>
+            <span><span aria-hidden="true">📍</span> <span class="sr-only">Lokacija:</span>${escapeHTML(e.location)}</span>
+            <span style="color:${statusColor};font-weight:600">${statusText}</span>
           </div>
         </div>
       </div>
@@ -1181,18 +1351,23 @@ function renderEventsPage() {
 }
 
 // ─── ADMIN: NEWS ───
-function addNews() {
+async function addNews() {
   const title = document.getElementById('newsTitle').value.trim();
-  const desc = document.getElementById('newsDesc').value.trim();
-  const date = document.getElementById('newsDate').value;
-  const cat = document.getElementById('newsCategory').value;
-  const feat = document.getElementById('newsFeatured').checked;
+  const desc  = document.getElementById('newsDesc').value.trim();
+  const date  = document.getElementById('newsDate').value;
+  const cat   = document.getElementById('newsCategory').value;
+  const feat  = document.getElementById('newsFeatured').checked;
   if (!title || !date) return alert('Unesite naslov i datum.');
-  if (feat) newsItems.forEach(n => n.featured = false); // only one featured at a time
-  newsItems.unshift({ id: Date.now(), title, desc, date, cat, featured: feat });
+  if (feat) {
+    await db.from('news').update({ featured: false }).eq('featured', true);
+    newsItems.forEach(n => n.featured = false);
+  }
+  const { data, error } = await db.from('news').insert({ title, desc, date, cat, featured: feat }).select().single();
+  if (error) { console.error('[addNews] error:', error); alert('Greška: ' + error.message); return; }
+  newsItems.unshift(data);
   document.getElementById('newsTitle').value = '';
-  document.getElementById('newsDesc').value = '';
-  document.getElementById('newsDate').value = '';
+  document.getElementById('newsDesc').value  = '';
+  document.getElementById('newsDate').value  = today.toISOString().split('T')[0];
   document.getElementById('newsFeatured').checked = false;
   showNotice('newsNotice');
   renderAdminNews();
@@ -1204,40 +1379,57 @@ function renderAdminNews() {
   el.innerHTML = newsItems.map(n => `
     <div class="admin-item">
       <div class="admin-item-text">
-        <strong>${n.title}</strong>
-        <span>${formatDate(n.date)} · ${n.cat}</span>
+        <strong>${escapeHTML(n.title)}</strong>
+        <span>${escapeHTML(formatDate(n.date))} · ${escapeHTML(n.cat)}</span>
       </div>
       <div class="admin-item-actions">
-        <button class="featured-toggle ${n.featured?'on':''}" title="Istakni na naslovnoj" onclick="toggleFeaturedNews(${n.id})">⭐</button>
-        <button class="btn-icon del" title="Obriši" onclick="deleteNews(${n.id})">🗑</button>
+        <button class="featured-toggle ${n.featured ? 'on' : ''}"
+          aria-pressed="${n.featured}"
+          title="${n.featured ? 'Ukloni sa istaknutih' : 'Istakni na naslovnoj'}"
+          onclick="toggleFeaturedNews(${n.id})">⭐</button>
+        <button class="btn-icon del"
+          aria-label="Obriši vest: ${escapeHTML(n.title)}"
+          onclick="deleteNews(${n.id})">🗑</button>
       </div>
     </div>
   `).join('');
 }
 
-function toggleFeaturedNews(id) {
-  newsItems.forEach(n => n.featured = (n.id === id ? !n.featured : false));
+async function toggleFeaturedNews(id) {
+  const item   = newsItems.find(n => n.id === id);
+  const newVal = !item.featured;
+  if (newVal) {
+    await db.from('news').update({ featured: false }).eq('featured', true);
+    newsItems.forEach(n => n.featured = false);
+  }
+  const { error } = await db.from('news').update({ featured: newVal }).eq('id', id);
+  if (error) { alert('Greška pri ažuriranju.'); return; }
+  item.featured = newVal;
   renderAdminNews();
 }
 
-function deleteNews(id) {
+async function deleteNews(id) {
   if (!confirm('Obrisati vest?')) return;
+  const { error } = await db.from('news').delete().eq('id', id);
+  if (error) { alert('Greška pri brisanju.'); return; }
   newsItems = newsItems.filter(n => n.id !== id);
   renderAdminNews();
 }
 
 // ─── ADMIN: EVENTS ───
-function addEvent() {
-  const title = document.getElementById('evtTitle').value.trim();
-  const desc = document.getElementById('evtDesc').value.trim();
-  const date = document.getElementById('evtDate').value;
-  const time = document.getElementById('evtTime').value;
-  const location = document.getElementById('evtLocation').value.trim();
+async function addEvent() {
+  const title    = document.getElementById('evtTitle').value.trim();
+  const desc     = document.getElementById('evtDesc').value.trim();
+  const date     = document.getElementById('evtDate').value;
+  const time     = document.getElementById('evtTime').value || '10:00';
+  const location = document.getElementById('evtLocation').value.trim() || 'Prostor udruženja';
   if (!title || !date) return alert('Unesite naziv i datum aktivnosti.');
-  events.push({ id: Date.now(), title, desc, date, time: time||'10:00', location: location||'Prostor udruženja' });
-  document.getElementById('evtTitle').value = '';
-  document.getElementById('evtDesc').value = '';
-  document.getElementById('evtDate').value = '';
+  const { data, error } = await db.from('events').insert({ title, desc, date, time, location }).select().single();
+  if (error) { console.error('[addEvent] error:', error); alert('Greška: ' + error.message); return; }
+  events.push(data);
+  document.getElementById('evtTitle').value    = '';
+  document.getElementById('evtDesc').value     = '';
+  document.getElementById('evtDate').value     = today.toISOString().split('T')[0];
   document.getElementById('evtLocation').value = '';
   showNotice('evtNotice');
   renderAdminEvents();
@@ -1247,23 +1439,27 @@ function addEvent() {
 
 function renderAdminEvents() {
   const el = document.getElementById('adminEventsList');
-  const sorted = [...events].sort((a,b) => new Date(a.date) - new Date(b.date));
+  const sorted = [...events].sort((a,b) => parseDate(a.date) - parseDate(b.date));
   if (!events.length) { el.innerHTML = '<p style="color:var(--text-muted);font-size:14px">Nema unetih aktivnosti.</p>'; return; }
   el.innerHTML = sorted.map(e => `
     <div class="admin-item">
       <div class="admin-item-text">
-        <strong>${e.title}</strong>
-        <span>${formatDate(e.date)} u ${e.time} · ${e.location}</span>
+        <strong>${escapeHTML(e.title)}</strong>
+        <span>${escapeHTML(formatDate(e.date))} u ${escapeHTML(e.time)} · ${escapeHTML(e.location)}</span>
       </div>
       <div class="admin-item-actions">
-        <button class="btn-icon del" title="Obriši" onclick="deleteEvent(${e.id})">🗑</button>
+        <button class="btn-icon del"
+          aria-label="Obriši aktivnost: ${escapeHTML(e.title)}"
+          onclick="deleteEvent(${e.id})">🗑</button>
       </div>
     </div>
   `).join('');
 }
 
-function deleteEvent(id) {
+async function deleteEvent(id) {
   if (!confirm('Obrisati aktivnost?')) return;
+  const { error } = await db.from('events').delete().eq('id', id);
+  if (error) { alert('Greška pri brisanju.'); return; }
   events = events.filter(e => e.id !== id);
   renderAdminEvents();
   renderCalendar();
@@ -1271,30 +1467,52 @@ function deleteEvent(id) {
 }
 
 // ─── ADMIN: FEATURED ───
-function saveFeatured() {
-  featured.title = document.getElementById('featTitle').value.trim();
-  featured.desc = document.getElementById('featDesc').value.trim();
+function renderAdminFeatured() {
+  document.getElementById('featTitle').value = featured.title || '';
+  document.getElementById('featDesc').value  = featured.desc  || '';
+}
+
+async function saveFeatured() {
+  featured.title  = document.getElementById('featTitle').value.trim();
+  featured.desc   = document.getElementById('featDesc').value.trim();
   featured.active = !!(featured.title);
+  const { error } = await db.from('featured_notice').upsert({ id: 1, title: featured.title, desc: featured.desc, active: featured.active });
+  if (error) { alert('Greška pri čuvanju.'); return; }
   showNotice('featNotice');
 }
-function clearFeatured() {
+
+async function clearFeatured() {
+  featured.title  = '';
+  featured.desc   = '';
   featured.active = false;
   document.getElementById('featTitle').value = '';
-  document.getElementById('featDesc').value = '';
+  document.getElementById('featDesc').value  = '';
+  const { error } = await db.from('featured_notice').upsert({ id: 1, title: '', desc: '', active: false });
+  if (error) { alert('Greška pri brisanju.'); return; }
   showNotice('featNotice');
 }
 
 // ─── ADMIN TABS ───
 function switchAdminTab(tab, el) {
-  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.admin-tab').forEach(t => {
+    t.classList.remove('active');
+    t.setAttribute('aria-selected', 'false');
+  });
   document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
   el.classList.add('active');
+  el.setAttribute('aria-selected', 'true');
   document.getElementById('admin-'+tab).classList.add('active');
 }
 
 // ─── HELPERS ───
+// Parse a YYYY-MM-DD string without timezone offset issues
+function parseDate(str) {
+  const [y, m, d] = str.split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
+
 function formatDate(str) {
-  const d = new Date(str);
+  const d = parseDate(str);
   return `${d.getDate()}. ${srMonthsShort[d.getMonth()]}. ${d.getFullYear()}.`;
 }
 
@@ -1304,13 +1522,14 @@ function showNotice(id) {
   setTimeout(() => el.classList.remove('show'), 3000);
 }
 
-// ─── SET DEFAULT DATE INPUTS ───
-document.addEventListener('DOMContentLoaded', () => {
+// ─── INIT ───
+document.addEventListener('DOMContentLoaded', async () => {
   const td = today.toISOString().split('T')[0];
   const nd = document.getElementById('newsDate');
   const ed = document.getElementById('evtDate');
   if (nd) nd.value = td;
   if (ed) ed.value = td;
+  await loadData();
   renderNews();
   renderCalendar();
   renderUpcoming();
