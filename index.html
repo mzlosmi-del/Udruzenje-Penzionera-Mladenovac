@@ -1265,11 +1265,11 @@ function renderNewsPage() {
       </div>
     </div>
   `).join('');
-  if (totalPages > 1) el.innerHTML += `
+  el.innerHTML += `
     <div class="pagination">
-      <button onclick="newsPage--;renderNewsPage()" ${newsPage === 0 ? 'disabled' : ''}>← Prethodna</button>
-      <span class="pagination-info">Prikazano ${newsPage * PAGE_SIZE + 1}–${Math.min((newsPage + 1) * PAGE_SIZE, sorted.length)} od ${sorted.length}</span>
-      <button onclick="newsPage++;renderNewsPage()" ${newsPage >= totalPages - 1 ? 'disabled' : ''}>Sledeća →</button>
+      ${totalPages > 1 ? `<button onclick="newsPage--;renderNewsPage()" ${newsPage === 0 ? 'disabled' : ''}>← Prethodna</button>` : ''}
+      <span class="pagination-info">Prikazano ${Math.min(newsPage * PAGE_SIZE + 1, sorted.length)}–${Math.min((newsPage + 1) * PAGE_SIZE, sorted.length)} od ${sorted.length}</span>
+      ${totalPages > 1 ? `<button onclick="newsPage++;renderNewsPage()" ${newsPage >= totalPages - 1 ? 'disabled' : ''}>Sledeća →</button>` : ''}
     </div>`;
 }
 
@@ -1392,11 +1392,11 @@ function renderEventsPage() {
       </div>
     `;
   }).join('');
-  if (totalPages > 1) el.innerHTML += `
+  el.innerHTML += `
     <div class="pagination">
-      <button onclick="eventsPage--;renderEventsPage()" ${eventsPage === 0 ? 'disabled' : ''}>← Prethodna</button>
-      <span class="pagination-info">Prikazano ${eventsPage * PAGE_SIZE + 1}–${Math.min((eventsPage + 1) * PAGE_SIZE, sorted.length)} od ${sorted.length}</span>
-      <button onclick="eventsPage++;renderEventsPage()" ${eventsPage >= totalPages - 1 ? 'disabled' : ''}>Sledeća →</button>
+      ${totalPages > 1 ? `<button onclick="eventsPage--;renderEventsPage()" ${eventsPage === 0 ? 'disabled' : ''}>← Prethodna</button>` : ''}
+      <span class="pagination-info">Prikazano ${Math.min(eventsPage * PAGE_SIZE + 1, sorted.length)}–${Math.min((eventsPage + 1) * PAGE_SIZE, sorted.length)} od ${sorted.length}</span>
+      ${totalPages > 1 ? `<button onclick="eventsPage++;renderEventsPage()" ${eventsPage >= totalPages - 1 ? 'disabled' : ''}>Sledeća →</button>` : ''}
     </div>`;
 }
 
@@ -1446,11 +1446,11 @@ function renderAdminNews() {
       </div>
     </div>
   `).join('');
-  if (totalPages > 1) el.innerHTML += `
+  el.innerHTML += `
     <div class="pagination">
-      <button onclick="adminNewsPage--;renderAdminNews()" ${adminNewsPage === 0 ? 'disabled' : ''}>← Prethodna</button>
-      <span class="pagination-info">Prikazano ${adminNewsPage * PAGE_SIZE + 1}–${Math.min((adminNewsPage + 1) * PAGE_SIZE, newsItems.length)} od ${newsItems.length}</span>
-      <button onclick="adminNewsPage++;renderAdminNews()" ${adminNewsPage >= totalPages - 1 ? 'disabled' : ''}>Sledeća →</button>
+      ${totalPages > 1 ? `<button onclick="adminNewsPage--;renderAdminNews()" ${adminNewsPage === 0 ? 'disabled' : ''}>← Prethodna</button>` : ''}
+      <span class="pagination-info">Prikazano ${Math.min(adminNewsPage * PAGE_SIZE + 1, newsItems.length)}–${Math.min((adminNewsPage + 1) * PAGE_SIZE, newsItems.length)} od ${newsItems.length}</span>
+      ${totalPages > 1 ? `<button onclick="adminNewsPage++;renderAdminNews()" ${adminNewsPage >= totalPages - 1 ? 'disabled' : ''}>Sledeća →</button>` : ''}
     </div>`;
 }
 
@@ -1516,11 +1516,11 @@ function renderAdminEvents() {
       </div>
     </div>
   `).join('');
-  if (totalPages > 1) el.innerHTML += `
+  el.innerHTML += `
     <div class="pagination">
-      <button onclick="adminEventsPage--;renderAdminEvents()" ${adminEventsPage === 0 ? 'disabled' : ''}>← Prethodna</button>
-      <span class="pagination-info">Prikazano ${adminEventsPage * PAGE_SIZE + 1}–${Math.min((adminEventsPage + 1) * PAGE_SIZE, sorted.length)} od ${sorted.length}</span>
-      <button onclick="adminEventsPage++;renderAdminEvents()" ${adminEventsPage >= totalPages - 1 ? 'disabled' : ''}>Sledeća →</button>
+      ${totalPages > 1 ? `<button onclick="adminEventsPage--;renderAdminEvents()" ${adminEventsPage === 0 ? 'disabled' : ''}>← Prethodna</button>` : ''}
+      <span class="pagination-info">Prikazano ${Math.min(adminEventsPage * PAGE_SIZE + 1, sorted.length)}–${Math.min((adminEventsPage + 1) * PAGE_SIZE, sorted.length)} od ${sorted.length}</span>
+      ${totalPages > 1 ? `<button onclick="adminEventsPage++;renderAdminEvents()" ${adminEventsPage >= totalPages - 1 ? 'disabled' : ''}>Sledeća →</button>` : ''}
     </div>`;
 }
 
