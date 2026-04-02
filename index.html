@@ -22,7 +22,7 @@
   "foundingDate": "1970",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Ul. Kosmajska 12",
+    "streetAddress": "Janka Katića 24",
     "postalCode": "11400",
     "addressLocality": "Mladenovac",
     "addressCountry": "RS"
@@ -666,12 +666,12 @@
     </div>
     <button class="hamburger" onclick="toggleNav()" aria-expanded="false" aria-controls="mainNav" aria-label="Otvori meni">☰</button>
     <nav id="mainNav" aria-label="Glavna navigacija">
-      <a href="#" class="active" onclick="showPage('home',this)">Naslovna</a>
-      <a href="#" onclick="showPage('about',this)">O nama</a>
-      <a href="#" onclick="showPage('news',this)">Obaveštenja</a>
-      <a href="#" onclick="showPage('events',this)">Aktivnosti</a>
-      <a href="#" onclick="showPage('services',this)">Usluge</a>
-      <a href="#" onclick="showPage('contact',this)">Kontakt</a>
+      <a href="#home" class="active" onclick="showPage('home',this);return false;">Naslovna</a>
+      <a href="#about" onclick="showPage('about',this);return false;">O nama</a>
+      <a href="#news" onclick="showPage('news',this);return false;">Obaveštenja</a>
+      <a href="#events" onclick="showPage('events',this);return false;">Aktivnosti</a>
+      <a href="#services" onclick="showPage('services',this);return false;">Usluge</a>
+      <a href="#contact" onclick="showPage('contact',this);return false;">Kontakt</a>
       <a href="#" class="admin-btn" onclick="openAdminOrLogin(event)"><span aria-hidden="true">⚙</span> Admin</a>
     </nav>
   </div>
@@ -915,7 +915,7 @@
       <div class="contact-icon" aria-hidden="true">📍</div>
       <div>
         <h4>Adresa</h4>
-        <p>Ul. Kosmajska 12<br>11400 Mladenovac</p>
+        <p>Janka Katića 24<br>11400 Mladenovac</p>
       </div>
     </div>
     <div class="contact-info-item">
@@ -942,7 +942,7 @@
     <div style="margin-top:32px;border-radius:10px;overflow:hidden;border:1px solid var(--border);box-shadow:0 2px 12px rgba(0,0,0,0.08);">
       <iframe
         title="Lokacija udruženja na mapi"
-        src="https://maps.google.com/maps?q=Kosmajska+12,+Mladenovac,+Serbia&t=&z=16&ie=UTF8&iwloc=&output=embed"
+        src="https://maps.google.com/maps?q=Janka+Katica+24,+Mladenovac,+Serbia&t=&z=16&ie=UTF8&iwloc=&output=embed"
         width="100%" height="380" style="display:block;border:0;"
         allowfullscreen loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
@@ -1068,7 +1068,7 @@
     <div class="footer-col">
       <h4>Kontakt</h4>
       <ul>
-        <li><span aria-hidden="true">📍</span> Ul. Kosmajska 12</li>
+        <li><span aria-hidden="true">📍</span> Janka Katića 24</li>
         <li><a href="tel:+38111123456"><span aria-hidden="true">📞</span> +381 11 123-456</a></li>
         <li><a href="mailto:kontakt@up-mladenovac.rs"><span aria-hidden="true">✉</span> kontakt@up-mladenovac.rs</a></li>
         <li><span aria-hidden="true">🕐</span> Pon–Pet 9:00–16:00</li>
