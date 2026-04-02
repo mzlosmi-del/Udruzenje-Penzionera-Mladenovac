@@ -1126,8 +1126,10 @@ let calMonth = today.getMonth();
 let newsItems = [];
 let events    = [];
 const PAGE_SIZE = 25;
-let newsPage   = 0;
-let eventsPage = 0;
+let newsPage        = 0;
+let eventsPage      = 0;
+let adminNewsPage   = 0;
+let adminEventsPage = 0;
 
 async function loadData() {
   const [newsRes, eventsRes] = await Promise.all([
@@ -1165,7 +1167,7 @@ function showPage(id, linkEl) {
   if (id === 'home') { renderNews(); renderCalendar(); renderUpcoming(); renderFeatured(); }
   if (id === 'news') { newsPage = 0; renderNewsPage(); }
   if (id === 'events') { eventsPage = 0; renderEventsPage(); }
-  if (id === 'admin') { renderAdminNews(); renderAdminEvents(); }
+  if (id === 'admin') { adminNewsPage = 0; adminEventsPage = 0; renderAdminNews(); renderAdminEvents(); }
 }
 
 // ─── HAMBURGER ───
@@ -1424,7 +1426,10 @@ async function addNews() {
 function renderAdminNews() {
   const el = document.getElementById('adminNewsList');
   if (!newsItems.length) { el.innerHTML = '<p style="color:var(--text-muted);font-size:14px">Nema unetih vesti.</p>'; return; }
-  el.innerHTML = newsItems.map(n => `
+  const totalPages = Math.ceil(newsItems.length / PAGE_SIZE);
+  adminNewsPage = Math.max(0, Math.min(adminNewsPage, totalPages - 1));
+  const page = newsItems.slice(adminNewsPage * PAGE_SIZE, (adminNewsPage + 1) * PAGE_SIZE);
+  el.innerHTML = page.map(n => `
     <div class="admin-item">
       <div class="admin-item-text">
         <strong>${escapeHTML(n.title)}</strong>
@@ -1441,6 +1446,12 @@ function renderAdminNews() {
       </div>
     </div>
   `).join('');
+  if (totalPages > 1) el.innerHTML += `
+    <div class="pagination">
+      <button onclick="adminNewsPage--;renderAdminNews()" ${adminNewsPage === 0 ? 'disabled' : ''}>← Prethodna</button>
+      <span class="pagination-info">Strana ${adminNewsPage + 1} od ${totalPages}</span>
+      <button onclick="adminNewsPage++;renderAdminNews()" ${adminNewsPage >= totalPages - 1 ? 'disabled' : ''}>Sledeća →</button>
+    </div>`;
 }
 
 async function toggleFeaturedNews(id) {
@@ -1489,7 +1500,10 @@ function renderAdminEvents() {
   const el = document.getElementById('adminEventsList');
   const sorted = [...events].sort((a,b) => parseDate(a.date) - parseDate(b.date));
   if (!events.length) { el.innerHTML = '<p style="color:var(--text-muted);font-size:14px">Nema unetih aktivnosti.</p>'; return; }
-  el.innerHTML = sorted.map(e => `
+  const totalPages = Math.ceil(sorted.length / PAGE_SIZE);
+  adminEventsPage = Math.max(0, Math.min(adminEventsPage, totalPages - 1));
+  const page = sorted.slice(adminEventsPage * PAGE_SIZE, (adminEventsPage + 1) * PAGE_SIZE);
+  el.innerHTML = page.map(e => `
     <div class="admin-item">
       <div class="admin-item-text">
         <strong>${escapeHTML(e.title)}</strong>
@@ -1502,6 +1516,12 @@ function renderAdminEvents() {
       </div>
     </div>
   `).join('');
+  if (totalPages > 1) el.innerHTML += `
+    <div class="pagination">
+      <button onclick="adminEventsPage--;renderAdminEvents()" ${adminEventsPage === 0 ? 'disabled' : ''}>← Prethodna</button>
+      <span class="pagination-info">Strana ${adminEventsPage + 1} od ${totalPages}</span>
+      <button onclick="adminEventsPage++;renderAdminEvents()" ${adminEventsPage >= totalPages - 1 ? 'disabled' : ''}>Sledeća →</button>
+    </div>`;
 }
 
 async function deleteEvent(id) {
