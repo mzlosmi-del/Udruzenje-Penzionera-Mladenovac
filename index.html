@@ -3,33 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Udruženje Penzionera Opštine Mladenovac — neprofitna organizacija koja od 1964. zastupa interese i brine o aktivnom životu penzionera opštine Mladenovac. Kontakt: 011 823 07 00.">
-<meta name="robots" content="index, follow">
+<meta name="description" content="Udruženje Penzionera Opštine Mladenovac — neprofitna organizacija osnovana 1964. koja zastupa interese penzionera, organizuje aktivnosti, izlete i zdravstvene usluge. Janka Katića 29, Mladenovac. Tel: 011 823 07 00.">
+<meta name="keywords" content="udruženje penzionera Mladenovac, penzioneri Mladenovac, opština Mladenovac, aktivnosti za penzionere, penzionersko udruženje, udruzenje penzionera opstine Mladenovac">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta name="author" content="Udruženje Penzionera Opštine Mladenovac">
+<meta name="geo.region" content="RS-00">
+<meta name="geo.placename" content="Mladenovac">
+<meta name="geo.position" content="44.4333;20.7000">
+<meta name="ICBM" content="44.4333, 20.7000">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Udruženje Penzionera Opštine Mladenovac">
-<meta property="og:description" content="Neprofitna organizacija koja od 1964. zastupa interese i brine o aktivnom životu penzionera opštine Mladenovac.">
+<meta property="og:description" content="Neprofitna organizacija osnovana 1964. koja zastupa interese penzionera, organizuje aktivnosti, izlete i zdravstvene usluge u opštini Mladenovac.">
+<meta property="og:url" content="https://up-mladenovac.rs/">
+<meta property="og:site_name" content="Udruženje Penzionera Opštine Mladenovac">
 <meta property="og:locale" content="sr_RS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Udruženje Penzionera Opštine Mladenovac">
+<meta name="twitter:description" content="Neprofitna organizacija osnovana 1964. koja zastupa interese penzionera u opštini Mladenovac.">
 <link rel="canonical" href="https://up-mladenovac.rs/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤝</text></svg>">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; connect-src https://*.supabase.co https://cdn.jsdelivr.net; img-src 'self' data: https://*.google.com https://*.googleapis.com https://*.gstatic.com; frame-src https://maps.google.com https://www.google.com;">
-<title>Udruženje Penzionera Opštine Mladenovac</title>
+<title>Udruženje Penzionera Opštine Mladenovac | Zvanična stranica</title>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "NGO",
   "name": "Udruženje Penzionera Opštine Mladenovac",
+  "alternateName": "UP Mladenovac",
   "description": "Neprofitna nevladina organizacija koja zastupa interese penzionera na teritoriji opštine Mladenovac, osnovana 1964. godine.",
   "foundingDate": "1964",
+  "url": "https://up-mladenovac.rs/",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Janka Katića 29",
     "postalCode": "11400",
     "addressLocality": "Mladenovac",
+    "addressRegion": "Grad Beograd",
     "addressCountry": "RS"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 44.4333,
+    "longitude": 20.7000
   },
   "telephone": "+381-11-823-07-00",
   "email": "penzionerimladenovac@mts.rs",
-  "openingHours": "Mo-Fr 08:00-15:00"
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+    "opens": "08:00",
+    "closes": "15:00"
+  },
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "Opština Mladenovac"
+  },
+  "knowsLanguage": "sr"
 }
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -1155,13 +1184,13 @@ async function loadData() {
 
 // ─── PAGE TITLES ───
 const pageTitles = {
-  home:     'Udruženje Penzionera Opštine Mladenovac',
-  news:     'Obaveštenja — Udruženje Penzionera Opštine Mladenovac',
-  about:    'O udruženju — Udruženje Penzionera Opštine Mladenovac',
-  events:   'Aktivnosti i događaji — Udruženje Penzionera Opštine Mladenovac',
-  services: 'Usluge — Udruženje Penzionera Opštine Mladenovac',
-  contact:  'Kontakt — Udruženje Penzionera Opštine Mladenovac',
-  admin:    'Admin panel — Udruženje Penzionera Opštine Mladenovac',
+  home:     'Udruženje Penzionera Opštine Mladenovac | Zvanična stranica',
+  news:     'Vesti i obaveštenja | Udruženje Penzionera Opštine Mladenovac',
+  about:    'O udruženju | Udruženje Penzionera Opštine Mladenovac',
+  events:   'Aktivnosti i događaji | Udruženje Penzionera Opštine Mladenovac',
+  services: 'Usluge za penzionere | Udruženje Penzionera Opštine Mladenovac',
+  contact:  'Kontakt i radno vreme | Udruženje Penzionera Opštine Mladenovac',
+  admin:    'Admin panel | Udruženje Penzionera Opštine Mladenovac',
 };
 
 // ─── NAVIGATION ───
