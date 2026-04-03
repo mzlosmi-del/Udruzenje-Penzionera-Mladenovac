@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.penzionerimladenovac.com/sitemap.xml
+Sitemap: https://penzionerimladenovac.com/sitemap.xml
