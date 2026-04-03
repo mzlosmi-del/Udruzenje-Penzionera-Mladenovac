@@ -1150,7 +1150,7 @@ const db = createClient(
 );
 
 // ─── STATE ───
-const ADMIN_PASS_HASH = "4dc3e989d02289fe4ed3ff32e0501319a8d0052c0dc7d0e9017fcfae2a8abf41";
+const ADMIN_PASS_HASH = "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9";
 
 async function hashPassword(pw) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
