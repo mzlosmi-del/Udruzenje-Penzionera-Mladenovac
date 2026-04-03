@@ -679,8 +679,12 @@
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal()" aria-label="Zatvori modal">✕</button>
     <h2 id="loginModalTitle">Admin prijava</h2>
-    <p>Unesite lozinku za pristup administratorskom panelu.</p>
-    <div class="login-error" id="loginError" role="alert">Pogrešna lozinka. Pokušajte ponovo.</div>
+    <p>Unesite email i lozinku za pristup administratorskom panelu.</p>
+    <div class="login-error" id="loginError" role="alert">Pogrešan email ili lozinka. Pokušajte ponovo.</div>
+    <div class="form-group">
+      <label for="loginEmail">Email</label>
+      <input type="email" id="loginEmail" placeholder="Unesite email" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
     <div class="form-group">
       <label for="loginPassword">Lozinka</label>
       <input type="password" id="loginPassword" placeholder="Unesite lozinku" onkeydown="if(event.key==='Enter')doLogin()">
@@ -970,6 +974,7 @@
   <div class="inner-header">
     <h2><span aria-hidden="true">⚙</span> Administratorski panel</h2>
     <p>Upravljajte sadržajem sajta — vesti, događaji i istaknuto obaveštenje</p>
+    <button class="btn-secondary" onclick="doLogout()" style="margin-top:12px;">Odjavi se</button>
   </div>
   <div class="admin-wrap">
     <div class="admin-tabs" role="tablist">
@@ -1115,12 +1120,6 @@ const db = createClient(
 );
 
 // ─── STATE ───
-const ADMIN_PASS_HASH = "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9";
-
-async function hashPassword(pw) {
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
-  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
-}
 let isLoggedIn = false;
 
 const srMonths = ["Januar","Februar","Mart","April","Maj","Jun","Jul","Avgust","Septembar","Oktobar","Novembar","Decembar"];
@@ -1217,21 +1216,30 @@ function openAdminOrLogin(e) {
 }
 
 async function doLogin() {
-  const pw = document.getElementById('loginPassword').value;
-  const hash = await hashPassword(pw);
+  const email = document.getElementById('loginEmail').value.trim();
+  const pw    = document.getElementById('loginPassword').value;
   document.getElementById('loginPassword').value = '';
-  if (hash === ADMIN_PASS_HASH) {
+  const { error } = await db.auth.signInWithPassword({ email, password: pw });
+  if (error) {
+    document.getElementById('loginError').classList.add('show');
+  } else {
     isLoggedIn = true;
     document.getElementById('loginModal').classList.remove('show');
     document.getElementById('loginError').classList.remove('show');
+    document.getElementById('loginEmail').value = '';
     showPage('admin', document.querySelector('.admin-btn'));
-  } else {
-    document.getElementById('loginError').classList.add('show');
   }
+}
+
+async function doLogout() {
+  await db.auth.signOut();
+  isLoggedIn = false;
+  showPage('home', document.querySelector('nav a'));
 }
 
 function closeModal() {
   document.getElementById('loginModal').classList.remove('show');
+  document.getElementById('loginEmail').value = '';
   document.getElementById('loginPassword').value = '';
   document.getElementById('loginError').classList.remove('show');
 }
@@ -1628,6 +1636,13 @@ function showNotice(id) {
 
 // ─── INIT ───
 document.addEventListener('DOMContentLoaded', async () => {
+  const { data: { session } } = await db.auth.getSession();
+  if (session) isLoggedIn = true;
+
+  db.auth.onAuthStateChange((_event, session) => {
+    isLoggedIn = !!session;
+  });
+
   const td = today.toISOString().split('T')[0];
   const nd = document.getElementById('newsDate');
   const ed = document.getElementById('evtDate');
