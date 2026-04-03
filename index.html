@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Udruženje Penzionera Opštine Mladenovac — neprofitna organizacija osnovana 1964. koja zastupa interese penzionera, organizuje aktivnosti, izlete i zdravstvene usluge. Janka Katića 29, Mladenovac. Tel: 011 823 07 00.">
-<meta name="keywords" content="udruženje penzionera Mladenovac, penzioneri Mladenovac, opština Mladenovac, aktivnosti za penzionere, penzionersko udruženje, udruzenje penzionera opstine Mladenovac">
+<meta name="keywords" content="udruženje penzionera Mladenovac, penzioneri Mladenovac, opština Mladenovac, aktivnosti za penzionere, penzionersko udruženje, udruzenje penzionera opstine Mladenovac, удружење пензионера Младеновац, пензионери Младеновац, општина Младеновац, активности за пензионере, пензионерско удружење">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta name="author" content="Udruženje Penzionera Opštine Mladenovac">
 <meta name="geo.region" content="RS-00">
@@ -17,10 +17,13 @@
 <meta property="og:url" content="https://up-mladenovac.rs/">
 <meta property="og:site_name" content="Udruženje Penzionera Opštine Mladenovac">
 <meta property="og:locale" content="sr_RS">
+<meta property="og:locale:alternate" content="sr_Cyrl_RS">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Udruženje Penzionera Opštine Mladenovac">
 <meta name="twitter:description" content="Neprofitna organizacija osnovana 1964. koja zastupa interese penzionera u opštini Mladenovac.">
 <link rel="canonical" href="https://up-mladenovac.rs/">
+<link rel="alternate" hreflang="sr" href="https://up-mladenovac.rs/">
+<link rel="alternate" hreflang="x-default" href="https://up-mladenovac.rs/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤝</text></svg>">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; connect-src https://*.supabase.co https://cdn.jsdelivr.net; img-src 'self' data: https://*.google.com https://*.googleapis.com https://*.gstatic.com; frame-src https://maps.google.com https://www.google.com;">
 <title>Udruženje Penzionera Opštine Mladenovac | Zvanična stranica</title>
@@ -29,7 +32,7 @@
   "@context": "https://schema.org",
   "@type": "NGO",
   "name": "Udruženje Penzionera Opštine Mladenovac",
-  "alternateName": "UP Mladenovac",
+  "alternateName": ["UP Mladenovac", "Удружење Пензионера Општине Младеновац"],
   "description": "Neprofitna nevladina organizacija koja zastupa interese penzionera na teritoriji opštine Mladenovac, osnovana 1964. godine.",
   "foundingDate": "1964",
   "url": "https://up-mladenovac.rs/",
@@ -689,7 +692,6 @@
       <button class="btn-primary" onclick="doLogin()" style="flex:1">Prijavi se</button>
       <button class="btn-secondary" onclick="closeModal()" style="flex:1">Otkaži</button>
     </div>
-    <p style="font-size:12px;color:var(--text-muted);margin-top:14px;text-align:center;">Demo lozinka: <strong>admin123</strong></p>
   </div>
 </div>
 
@@ -1148,7 +1150,12 @@ const db = createClient(
 );
 
 // ─── STATE ───
-const ADMIN_PASS = "admin123";
+const ADMIN_PASS_HASH = "4dc3e989d02289fe4ed3ff32e0501319a8d0052c0dc7d0e9017fcfae2a8abf41";
+
+async function hashPassword(pw) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
 let isLoggedIn = false;
 
 const srMonths = ["Januar","Februar","Mart","April","Maj","Jun","Jul","Avgust","Septembar","Oktobar","Novembar","Decembar"];
@@ -1244,12 +1251,13 @@ function openAdminOrLogin(e) {
   }
 }
 
-function doLogin() {
+async function doLogin() {
   const pw = document.getElementById('loginPassword').value;
-  if (pw === ADMIN_PASS) {
+  const hash = await hashPassword(pw);
+  document.getElementById('loginPassword').value = '';
+  if (hash === ADMIN_PASS_HASH) {
     isLoggedIn = true;
     document.getElementById('loginModal').classList.remove('show');
-    document.getElementById('loginPassword').value = '';
     document.getElementById('loginError').classList.remove('show');
     showPage('admin', document.querySelector('.admin-btn'));
   } else {
