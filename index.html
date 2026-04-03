@@ -869,7 +869,11 @@
   <div class="inner-content" style="max-width:1000px">
     <div class="section-label" aria-hidden="true">Kalendar</div>
     <h3 class="section-title">Predstojeće aktivnosti</h3>
-    <div class="events-list" id="eventsPageList" aria-live="polite" aria-label="Lista događaja"></div>
+    <div class="events-list" id="eventsUpcomingList" aria-live="polite" aria-label="Predstojeće aktivnosti"></div>
+
+    <div class="section-label" aria-hidden="true" style="margin-top:48px">Arhiva</div>
+    <h3 class="section-title">Prethodni događaji</h3>
+    <div class="events-list" id="eventsPastList" aria-live="polite" aria-label="Prethodni događaji"></div>
   </div>
 </div>
 
@@ -1131,6 +1135,7 @@ let events    = [];
 const PAGE_SIZE = 25;
 let newsPage        = 0;
 let eventsPage      = 0;
+let eventsPastPage  = 0;
 let adminNewsPage   = 0;
 let adminEventsPage = 0;
 let editingNewsId   = null;
@@ -1171,7 +1176,7 @@ function showPage(id, linkEl) {
   closeNav();
   if (id === 'home') { renderNews(); renderCalendar(); renderUpcoming(); renderFeatured(); }
   if (id === 'news') { newsPage = 0; renderNewsPage(); }
-  if (id === 'events') { eventsPage = 0; renderEventsPage(); }
+  if (id === 'events') { eventsPage = 0; eventsPastPage = 0; renderEventsPage(); }
   if (id === 'admin') { adminNewsPage = 0; adminEventsPage = 0; renderAdminNews(); renderAdminEvents(); }
 }
 
@@ -1254,7 +1259,7 @@ function renderNews() {
 }
 
 function renderNewsPage() {
-  const sorted = [...newsItems].sort((a,b) => parseDate(b.date) - parseDate(a.date));
+  const sorted = [...newsItems].sort((a,b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || parseDate(b.date) - parseDate(a.date));
   const el = document.getElementById('newsPageList');
   if (!sorted.length) { el.innerHTML = '<p style="color:var(--text-muted)">Nema obaveštenja.</p>'; return; }
   const totalPages = Math.ceil(sorted.length / PAGE_SIZE);
@@ -1367,17 +1372,11 @@ function renderUpcoming() {
 // ─── RENDER EVENTS PAGE ───
 function renderEventsPage() {
   const now = new Date(); now.setHours(0,0,0,0);
-  const sorted = [...events].sort((a,b) => parseDate(a.date) - parseDate(b.date));
-  const el = document.getElementById('eventsPageList');
-  if (!sorted.length) { el.innerHTML = '<p style="color:var(--text-muted)">Nema unetih aktivnosti.</p>'; return; }
-  const totalPages = Math.ceil(sorted.length / PAGE_SIZE);
-  eventsPage = Math.max(0, Math.min(eventsPage, totalPages - 1));
-  const page = sorted.slice(eventsPage * PAGE_SIZE, (eventsPage + 1) * PAGE_SIZE);
-  el.innerHTML = page.map(e => {
+  const upcoming = [...events].filter(e => parseDate(e.date) >= now).sort((a,b) => parseDate(a.date) - parseDate(b.date));
+  const past     = [...events].filter(e => parseDate(e.date) <  now).sort((a,b) => parseDate(b.date) - parseDate(a.date));
+
+  function renderEventCard(e, isPast) {
     const d = parseDate(e.date);
-    const isPast = d < now;
-    const statusText = isPast ? 'Završeno' : 'Predstojeće';
-    const statusColor = isPast ? '#c0392b' : '#27ae60';
     return `
       <div class="event-card" style="${isPast ? 'opacity:0.65' : ''}">
         <div class="big-date" style="${isPast ? 'background:var(--text-muted)' : ''}" aria-hidden="true">
@@ -1391,18 +1390,29 @@ function renderEventsPage() {
           <div class="event-meta">
             <span><span aria-hidden="true">🕐</span> <span class="sr-only">Vreme:</span>${escapeHTML(e.time)}</span>
             <span><span aria-hidden="true">📍</span> <span class="sr-only">Lokacija:</span>${escapeHTML(e.location)}</span>
-            <span style="color:${statusColor};font-weight:600">${statusText}</span>
           </div>
         </div>
-      </div>
-    `;
-  }).join('');
-  el.innerHTML += `
-    <div class="pagination">
-      ${totalPages > 1 ? `<button onclick="eventsPage--;renderEventsPage()" ${eventsPage === 0 ? 'disabled' : ''}>← Prethodna</button>` : ''}
-      <span class="pagination-info">Prikazano ${Math.min(eventsPage * PAGE_SIZE + 1, sorted.length)}–${Math.min((eventsPage + 1) * PAGE_SIZE, sorted.length)} od ${sorted.length}</span>
-      ${totalPages > 1 ? `<button onclick="eventsPage++;renderEventsPage()" ${eventsPage >= totalPages - 1 ? 'disabled' : ''}>Sledeća →</button>` : ''}
-    </div>`;
+      </div>`;
+  }
+
+  function renderSection(el, items, page, setPage) {
+    if (!items.length) { el.innerHTML = '<p style="color:var(--text-muted)">Nema aktivnosti.</p>'; return; }
+    const totalPages = Math.ceil(items.length / PAGE_SIZE);
+    page = Math.max(0, Math.min(page, totalPages - 1));
+    setPage(page);
+    const slice = items.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
+    const isPast = el.id === 'eventsPastList';
+    el.innerHTML = slice.map(e => renderEventCard(e, isPast)).join('');
+    el.innerHTML += `
+      <div class="pagination">
+        ${totalPages > 1 ? `<button onclick="${isPast ? 'eventsPastPage' : 'eventsPage'}--;renderEventsPage()" ${page === 0 ? 'disabled' : ''}>← Prethodna</button>` : ''}
+        <span class="pagination-info">Prikazano ${Math.min(page * PAGE_SIZE + 1, items.length)}–${Math.min((page + 1) * PAGE_SIZE, items.length)} od ${items.length}</span>
+        ${totalPages > 1 ? `<button onclick="${isPast ? 'eventsPastPage' : 'eventsPage'}++;renderEventsPage()" ${page >= totalPages - 1 ? 'disabled' : ''}>Sledeća →</button>` : ''}
+      </div>`;
+  }
+
+  renderSection(document.getElementById('eventsUpcomingList'), upcoming, eventsPage,    p => eventsPage = p);
+  renderSection(document.getElementById('eventsPastList'),     past,     eventsPastPage, p => eventsPastPage = p);
 }
 
 // ─── ADMIN: NEWS ───
